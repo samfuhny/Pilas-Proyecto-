@@ -68,7 +68,7 @@ body{
       <p id="msg">¿Ya te vas? ¡Siga, siga, que todavía falta mucho por recorrer! Puedes seguir explorando los rinconcitos del mapa o cambiar de sección para descubrir otras historias de Bogotá. ¡PILAS!, que aquí siempre hay algo más por descubrir.</p>
       <div class="botones">
         <button type="button" id="volver" class="btn btn-mapa">Volver al mapa</button>
-        <a id="siga" class="btn btn-sigue" href="#siguiente">¡Siga por acá!</a>
+        <a id="siga" class="btn btn-sigue" href="trend.html">¡Siga por acá!</a>
       </div>
     </div>
   </section>
@@ -76,7 +76,7 @@ body{
 <script>
 // Enlaces: pon aquí la URL real cuando la tengas
 var URL_MAPA='pagina4.html';     // vuelve al mapa
-var URL_SIGUIENTE='#siguiente';  // reemplazar por la otra página
+var URL_SIGUIENTE='trend.html';  // página siguiente
 document.getElementById('siga').setAttribute('href',URL_SIGUIENTE);
 document.getElementById('volver').addEventListener('click',function(){
   try{window.parent.postMessage({accion:'mapa'},'*')}catch(e){}

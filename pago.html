@@ -22,7 +22,10 @@
     <div id="card" class="idle"><img src="img/pagina1/tarjeta.png" alt="Tarjeta TuLlave Bogotá"></div>
     <div id="hint">Arrastra la tarjeta al lector</div>
   </div>
- <audio id="paymentSound" src="calle54.mp3" preload="auto"></audio>
+  <audio id="paymentSound" preload="auto" playsinline>
+    <source src="audio/calle-54.mp3" type="audio/mpeg">
+    <source src="Calle%2054%202%20copia.m4a" type="audio/mp4">
+  </audio>
   <script src="js/pago.js"></script>
 </body>
 </html>

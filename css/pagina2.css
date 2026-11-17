@@ -20,8 +20,16 @@
 .flourish-naranja{z-index:1}
 
 .rutero{left:calc(var(--u) * 147);top:calc(var(--u) * 152);width:calc(var(--u) * 373);height:calc(var(--u) * 407)}
-.texto{position:absolute;left:calc(var(--u) * 147);width:calc(var(--u) * 373);top:calc(var(--u) * 326);margin:0;padding:0;text-align:center;
-  font:500 calc(var(--u) * 19.5)/calc(var(--u) * 23.5) "Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;color:var(--crema);white-space:nowrap}
+/* Párrafo dentro del rutero: mismos márgenes que "¿Ya te vas?" (arriba 25%, lados 9%, abajo 6% del rutero).
+   El tamaño de letra guarda la misma proporción (15px sobre 310px) y escala con el rutero, así no se sale en el celular.
+   El selector largo + !important es necesario porque identidad.css fuerza "body p" a 15px fijos. */
+html body .art p.texto{position:absolute;box-sizing:border-box;
+  left:calc(var(--u) * 147 + var(--u) * 373 * .09);width:calc(var(--u) * 373 * .82);
+  top:calc(var(--u) * 152 + var(--u) * 407 * .25);height:calc(var(--u) * 407 * .69);
+  margin:0!important;padding:0;display:flex;align-items:center;justify-content:center;text-align:center;
+  white-space:normal;overflow-wrap:break-word;
+  font-family:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif!important;
+  font-weight:400!important;font-size:calc(var(--u) * 18)!important;line-height:1.3!important;color:var(--crema)}
 
 /* La apariencia del botón está en css/territorio-btn.css; aquí solo posición y tamaño */
 .siguiente{left:calc(var(--u) * 280);top:calc(var(--u) * 567);width:calc(var(--u) * 120);z-index:2}
