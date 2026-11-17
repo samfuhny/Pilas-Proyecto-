@@ -1,0 +1,554 @@
+/* ==========================================
+   1. TIPOGRAFÍAS
+   ========================================== */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,900&display=swap');
+
+@font-face {
+    font-family: 'Oferta do Dia';
+    src: url('fonts/OfertaDoDia.woff2') format('woff2'),
+         url('fonts/OfertaDoDia.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+/* ==========================================
+   2. VARIABLES (colores y fuentes de marca)
+   ========================================== */
+:root {
+    --rojo: #D3362E;
+    --amarillo: #FDC913;
+    --rosa: #ECA5C9;
+    --crema: #FBF2DA;
+    --azul: #2E5FA9;
+    --verde: #00A04B;
+    --naranja: #E5521D;
+
+    --margen-lateral: 55px;   /* margen izquierdo y derecho del texto en todas las páginas */
+    --fuente-principal: 'Bricolage Grotesque', sans-serif;
+    --fuente-marca: 'Oferta do Dia', sans-serif;
+}
+
+
+/* ==========================================
+   3. ESTILOS GENERALES
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--crema);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow-x: hidden;
+}
+
+#version-movil {
+    display: none;
+}
+
+#version-escritorio {
+    display: block;
+}
+
+
+/* ==========================================
+   4. FOOTER (compartido)
+   ========================================== */
+.footer {
+    background-color: var(--crema);
+    padding: 24px 20px 32px;
+    font-family: var(--fuente-principal);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer__logo {
+    display: block;
+    width: 160px;
+    height: auto;
+    margin-bottom: 24px;
+}
+
+.footer__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: fit-content;
+    max-width: 100%;
+}
+
+.footer__title {
+    margin: 0 0 8px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--naranja);
+    letter-spacing: 0.2px;
+}
+
+.footer__list {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer__list a,
+.footer__list span {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--azul);
+    text-decoration: none;
+}
+
+.footer__list a:hover {
+    text-decoration: underline;
+}
+
+/* Franja de color arriba del footer: línea azul + banda naranja.
+   Va fuera de los bloques móvil/escritorio, así sirve para los dos. */
+.franja-footer {
+    width: 100%;
+    height: 24px;
+    background-color: var(--amarillo);
+}
+
+@media (min-width: 768px) {
+    .footer__nav {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 40px;
+    }
+}
+
+
+/* ==========================================================
+   5. VERSIÓN MÓVIL (hasta 767px)
+   ========================================================== */
+@media screen and (max-width: 767px) {
+
+    #version-escritorio {
+        display: none;
+    }
+
+    #version-movil {
+        display: block;
+    }
+
+    /* ---------- 5.1 Header y menú hamburguesa ---------- */
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 65px;
+        background-color: var(--naranja);
+        padding: 0 24px;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo-top img {
+        height: 30px;
+        width: auto;
+        display: block;
+    }
+
+    .menu-toggle,
+    .submenu-toggle {
+        display: none;
+    }
+
+    .hamburger-button {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 20px;
+        cursor: pointer;
+        z-index: 1001;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .hamburger-button span {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background-color: var(--crema);
+        transition: all 0.3s ease;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        background-color: var(--naranja);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.4s ease;
+    }
+
+    .menu-toggle:checked ~ .nav-menu {
+        right: 0;
+    }
+
+    .nav-list {
+        list-style: none;
+        text-align: center;
+    }
+
+    .nav-list li {
+        margin: 22px 0;
+    }
+
+    .nav-link-menu {
+        color: var(--crema);
+        text-decoration: none;
+        font-family: var(--fuente-principal);
+        font-size: 20px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        display: inline-block;
+    }
+
+    /* DESCUBRE es un <label> (abre el submenú), no un link */
+    .nav-link-submenu {
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Animación de hamburguesa a X */
+    .menu-toggle:checked ~ .hamburger-button span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .menu-toggle:checked ~ .hamburger-button span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle:checked ~ .hamburger-button span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+
+
+    /* ---------- 5.1b Submenú de DESCUBRE ----------
+       Es otro panel a pantalla completa que se desliza encima
+       del menú principal cuando el checkbox #submenu-toggle está marcado. */
+    .submenu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        background-color: var(--naranja);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 90px 24px 40px;
+        overflow-y: auto;
+        /* Oculto mientras está cerrado (no recibe clics ni foco) */
+        visibility: hidden;
+        transition: right 0.4s ease, visibility 0s linear 0.4s;
+    }
+
+    .submenu-toggle:checked ~ .nav-menu .submenu {
+        right: 0;
+        visibility: visible;
+        transition: right 0.4s ease, visibility 0s;
+    }
+
+    /* Flecha arriba a la izquierda: vuelve al menú principal */
+    .submenu-back {
+        position: fixed;
+        top: 17px;
+        left: 24px;
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+        z-index: 2;
+        -webkit-tap-highlight-color: transparent;
+        transition: transform 0.2s ease;
+    }
+
+    .submenu-back svg {
+        display: block;
+    }
+
+    .submenu-back:active {
+        transform: translateX(-3px);
+    }
+
+    /* Contenido del submenú: frase + lista, centrado */
+    .submenu-content {
+        width: 100%;
+        margin: auto 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    /* Título "Compra local" (PNG a tamaño real; solo se achica si no cabe) */
+    .submenu-titulo {
+        display: block;
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 12px;
+    }
+
+    /* Frase debajo del título: caja amarilla redondeada con texto azul */
+    .submenu-frase {
+        max-width: 230px;
+        margin-bottom: 30px;
+        padding: 16px 22px;
+        border-radius: 28px;
+        background-color: var(--amarillo);
+        font-family: var(--fuente-principal);
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.4;
+        color: var(--azul);
+    }
+
+    /* Lista: mismo estilo que el menú principal (texto crema, sin botones) */
+    .submenu-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 22px;
+    }
+
+    .submenu-btn {
+        display: inline-block;
+        color: var(--crema);
+        text-decoration: none;
+        font-family: var(--fuente-principal);
+        font-size: 20px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        -webkit-tap-highlight-color: transparent;
+        transition: transform 0.2s ease;
+    }
+
+    .submenu-btn:active {
+        transform: scale(0.96);
+    }
+
+    .submenu-btn:focus-visible,
+    .nav-link-menu:focus-visible {
+        outline: 3px solid var(--crema);
+        outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .nav-menu,
+        .submenu,
+        .submenu-btn,
+        .submenu-back {
+            transition: none;
+        }
+    }
+
+
+    /* ---------- 5.2 Contenido principal ---------- */
+    .main-content-layout {
+        padding-top: 65px;
+        width: 100%;
+    }
+
+    /* ---------- 5.3 Sección naranja: texto + rombo rosado ----------
+       Todo va en porcentajes del ancho de la sección para que la
+       composición escale junta y nada se mueva al cambiar el ancho. */
+    .story2-section {
+        width: 100%;
+        /* La sección tiene la MISMA proporción que fondo2.png (ancho / alto),
+           igual que en story1 donde el PNG manda el tamaño. Así el fondo
+           no se recorta ni se estira, y el contenido queda centrado dentro.
+           >>> Cambia 4 / 5 por el ancho y alto reales de tu fondo2.png <<< */
+        aspect-ratio: 4 / 5;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 24px 0;
+        background-color: var(--naranja);
+        background-image: url('fondo2.png');   /* textura + decoraciones */
+        background-size: cover;
+        background-position: center;           /* igual que story1 */
+        background-repeat: no-repeat;
+        overflow: hidden;
+    }
+
+    /* Cuadro azul con el texto (texto real, no PNG) */
+    .story2-texto {
+        position: relative;
+        z-index: 1;
+        margin: 0 var(--margen-lateral);   /* 55px por lado; el ancho se ajusta solo */
+        padding: 18px 20px 40px;
+        background-color: var(--azul);
+        border-radius: 20px;
+        font-family: var(--fuente-principal);
+        color: var(--crema);
+    }
+
+    .story2-texto__titulo {
+        margin: 0 0 12px;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 1.2;
+        text-transform: uppercase;
+    }
+
+    .story2-texto__parrafo {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.25;
+    }
+
+    /* Rombo rosado (PNG a tamaño real) encima del cuadro azul */
+    /* El PNG ignora el margen de 55px: ya trae el suyo dentro */
+    .story2-rombo {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        justify-content: center;
+        margin-top: -7%;             /* se monta sobre el borde inferior del cuadro azul */
+    }
+
+    .story2-rombo__caja {
+        position: relative;
+        display: block;
+        width: fit-content;
+        max-width: 100%;
+    }
+
+    .story2-rombo__img {
+        display: block;
+        width: auto;
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Franja invisible que centra el botón dentro del rombo (70.9% de alto).
+       La animación va en el <a>, no aquí. */
+    .story2-rombo__btn-zona {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 70.9%;
+        display: flex;
+        justify-content: center;
+        transform: translateY(-50%);
+        pointer-events: none;
+    }
+
+    /* Botón "Conócenos": misma píldora de .btn-mirar, en azul */
+    .btn-conocenos {
+        pointer-events: auto;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 30px;
+        padding: 0 20px 3px;
+        border-radius: 25px;
+        background-color: var(--azul);
+        color: var(--crema);
+        text-decoration: none;
+        font-family: var(--fuente-principal);
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 1;
+        white-space: nowrap;
+        -webkit-tap-highlight-color: transparent;
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
+    }
+
+    /* Misma animación del botón de la sección anterior */
+    .btn-conocenos:hover {
+        transform: scale(1.1) rotate(-3deg);
+        filter: brightness(1.1);
+    }
+
+    .btn-conocenos:active {
+        transform: scale(0.95) rotate(0deg);
+    }
+
+    .btn-conocenos:focus-visible {
+        outline: 3px solid var(--crema);
+        outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .btn-conocenos {
+            transition: none;
+        }
+    }
+
+    /* ---------- 5.4 Footer móvil ---------- */
+    .footer {
+        padding: 20px 20px 24px;
+    }
+
+    .footer__logo {
+        width: 190px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+
+    .footer__nav {
+        display: grid;
+        grid-template-columns: auto;
+        justify-content: center;
+        justify-items: center;
+        row-gap: 16px;
+        width: 100%;
+    }
+
+    .footer__col {
+        text-align: center;
+    }
+
+    .footer__title {
+        font-size: 13px;
+        margin-bottom: 6px;
+    }
+
+    .footer__list {
+        padding-left: 0;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .footer__list a,
+    .footer__list span {
+        font-size: 12px;
+        line-height: 1.25;
+    }
+
+}
+
+
+/* ==========================================================
+   6. VERSIÓN ESCRITORIO (desde 768px)
+   ========================================================== */
+@media screen and (min-width: 768px) {
+    /* Agrega aquí los estilos de escritorio cuando los necesites */
+}

@@ -1,0 +1,597 @@
+/* ==========================================
+   1. TIPOGRAFÍAS
+   (el @import siempre va en la primera línea)
+   ========================================== */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,900&display=swap');
+
+@font-face {
+    font-family: 'Oferta do Dia';
+    src: url('fonts/OfertaDoDia.woff2') format('woff2'),
+         url('fonts/OfertaDoDia.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+/* ==========================================
+   2. VARIABLES (colores y fuentes de marca)
+   ========================================== */
+:root {
+    --rojo: #D3362E;
+    --amarillo: #FDC913;
+    --rosa: #ECA5C9;
+    --crema: #FBF2DA;
+    --azul: #2E5FA9;
+    --verde: #00A04B;
+    --naranja: #E5521D;
+
+    --fuente-principal: 'Bricolage Grotesque', sans-serif;
+    --fuente-marca: 'Oferta do Dia', sans-serif;
+}
+
+
+/* ==========================================================
+   VERSIÓN MÓVIL  (hasta 767px)
+   ========================================================== */
+@media screen and (max-width: 767px) {
+
+    /* ==========================================
+       MENÚ Y SUBMENÚ
+       ========================================== */
+
+    /* ---------- Header y menú hamburguesa ---------- */
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 65px;
+        background-color: var(--rojo);
+        padding: 0 24px;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo-top img {
+        height: 30px;
+        width: auto;
+        display: block;
+    }
+
+    /* Checkboxes invisibles que controlan los menús sin JavaScript */
+    .menu-toggle,
+    .submenu-toggle {
+        display: none;
+    }
+
+    .hamburger-button {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 20px;
+        cursor: pointer;
+        z-index: 1004;              /* siempre por encima del menú y del submenú */
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .hamburger-button span {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background-color: var(--crema);
+        transition: all 0.3s ease;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        background-color: var(--rojo);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.4s ease;
+    }
+
+    .menu-toggle:checked ~ .nav-menu {
+        right: 0;
+    }
+
+    .nav-list {
+        list-style: none;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+    }
+
+    .nav-list li {
+        margin: 22px 0;
+    }
+
+    .nav-link-menu {
+        color: var(--crema);
+        text-decoration: none;
+        font-family: var(--fuente-principal);
+        font-size: 20px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    /* ---------- Submenú de DESCUBRE ---------- */
+    .submenu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        background-color: var(--rojo);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 90px 24px 40px;
+        overflow-y: auto;
+        visibility: hidden;
+        transition: right 0.4s ease, visibility 0s linear 0.4s;
+        z-index: 1002;
+    }
+
+    .menu-toggle:checked ~ .submenu-toggle:checked ~ .nav-menu .submenu {
+        right: 0;
+        visibility: visible;
+        transition: right 0.4s ease, visibility 0s;
+    }
+
+    /* Flecha arriba a la izquierda: vuelve al menú principal */
+    .submenu-back {
+        position: fixed;
+        top: 17px;
+        left: 24px;
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+        z-index: 1003;
+        -webkit-tap-highlight-color: transparent;
+        transition: transform 0.2s ease;
+    }
+
+    .submenu-back svg {
+        display: block;
+    }
+
+    .submenu-back:active {
+        transform: translateX(-3px);
+    }
+
+    /* Contenido del submenú */
+    .submenu-content {
+        width: 100%;
+        margin: auto 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .submenu-titulo {
+        display: block;
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 12px;
+    }
+
+    .submenu-frase {
+        max-width: 230px;
+        margin-bottom: 30px;
+        padding: 16px 22px;
+        border-radius: 28px;
+        background-color: var(--amarillo);
+        font-family: var(--fuente-principal);
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.4;
+        color: var(--azul);
+    }
+
+    .submenu-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 22px;
+        padding: 0;
+        margin: 0;
+    }
+
+    .submenu-btn {
+        display: inline-block;
+        color: var(--crema);
+        text-decoration: none;
+        font-family: var(--fuente-principal);
+        font-size: 20px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        -webkit-tap-highlight-color: transparent;
+        transition: transform 0.2s ease;
+    }
+
+    .submenu-btn:active {
+        transform: scale(0.96);
+    }
+
+    .submenu-btn:focus-visible,
+    .nav-link-menu:focus-visible {
+        outline: 3px solid var(--crema);
+        outline-offset: 3px;
+    }
+
+    /* Animación de hamburguesa a X */
+    .menu-toggle:checked ~ .hamburger-button span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .menu-toggle:checked ~ .hamburger-button span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle:checked ~ .hamburger-button span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+
+
+    /* ---------- 0. Regla base para TODAS las imágenes ----------
+       Cada PNG se muestra a su tamaño real y solo se achica si no
+       cabe en la pantalla. Las clases de abajo pueden cambiarlo. */
+    img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Para cualquier PNG que quieras a su tamaño real */
+    .png-real {
+        width: auto;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .franja-footer {
+        width: 100%;
+        height: 24px;
+        background-color: var(--azul);
+    }
+
+
+    /* ---------- 1. Sección roja: estrella + título ---------- */
+    .archivo-hero {
+        background-color: var(--rojo);
+        padding: 24px 0 28px;
+    }
+
+    .archivo-hero__estrella {
+        position: relative;
+        width: 100%;
+    }
+
+    .archivo-hero__img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    /* Párrafo encima de la estrella (14pt / 15pt de Illustrator) */
+    .archivo-hero__lead {
+        position: absolute;
+        top: 58.5%;            /* ajusta según la posición de tu imagen */
+        left: 14%;
+        width: 68%;
+        font-family: var(--fuente-principal);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 15px;
+        color: var(--crema);
+        text-align: left;
+        margin: 0;
+    }
+
+    .archivo-hero__textos {
+        padding: 20px 55px 0;
+    }
+
+    .archivo-hero__textos p {
+        font-family: var(--fuente-principal);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 15px;
+        color: var(--crema);
+        text-align: left;
+        text-align-last: left;
+        margin-bottom: 15px;
+    }
+
+    .archivo-hero__textos p:last-child {
+        margin-bottom: 0;
+    }
+
+
+    /* ---------- 2. Sección amarilla: título en PNG ---------- */
+    .archivo-titulo {
+        background-color: var(--amarillo);
+        background-image: url('textura.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 230px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        padding: 0;
+    }
+
+    .archivo-titulo__img {
+        display: block;
+        width: 100%;
+        height: auto;
+        flex-shrink: 0;             /* evita que el PNG se aplaste dentro del flex */
+        margin: 0 auto;
+    }
+
+    .archivo-titulo__asterisco {
+        display: block;
+        width: 30px;
+        height: auto;
+        flex-shrink: 0;
+        margin: 12px 24px 12px auto;   /* abajo a la derecha */
+    }
+
+
+    /* ---------- 3. Sección verde: slider ---------- */
+    .slider-section {
+        background-color: var(--verde);
+        padding: 36px 0 32px;
+    }
+
+    .slider {
+        position: relative;
+    }
+
+    /* Carril: se desliza con el dedo y cada diapositiva se "pega" al centro */
+    .slider__track {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        overscroll-behavior-x: contain;
+    }
+
+    .slider__track::-webkit-scrollbar {
+        display: none;
+    }
+
+    .slide {
+        flex: 0 0 100%;
+        scroll-snap-align: center;
+        padding-top: 40px;          /* espacio arriba para que el carril no corte la estrella */
+    }
+
+    /* Foto con la estrella amarilla encima */
+    .slide__foto {
+        position: relative;
+        width: 73%;
+        margin: 0 auto;
+    }
+
+    .slide__img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+    }
+
+    /* Estrella: pequeña y dentro de la pantalla (no se corta) */
+    .slide__estrella {
+        position: absolute;
+        top: -8%;
+        left: -8%;
+        width: 24%;
+        max-width: none;            /* para que la regla base no la limite */
+        height: auto;
+    }
+
+    /* Segunda estrella: esquina opuesta (abajo a la derecha) para equilibrar en diagonal */
+    .slide__estrella--abajo {
+        top: auto;
+        left: auto;
+        bottom: -6%;
+        right: -8%;
+        width: 18%;
+        transform: rotate(18deg);
+    }
+
+    /* ---------- 3 fotos verticales en fila (toca una de los lados y pasa al centro) ---------- */
+    .pila {
+        aspect-ratio: 1 / 0.9;      /* alto de la zona de fotos */
+    }
+
+    .pila__item {
+        position: absolute;
+        top: 50%;
+        width: 58%;
+        aspect-ratio: 3 / 4;        /* foto vertical */
+        object-fit: cover;
+        border-radius: 18px;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        transition: left 0.45s ease, transform 0.45s ease,
+                    opacity 0.45s ease, filter 0.45s ease;
+    }
+
+    /* Foto activa: al centro */
+    .pila__item[data-pos="0"] {
+        left: 21%;
+        transform: translateY(-50%) scale(1);
+        opacity: 1;
+        z-index: 3;
+    }
+
+    /* Foto de la derecha */
+    .pila__item[data-pos="1"] {
+        left: 42%;
+        transform: translateY(-50%) scale(0.88);
+        opacity: 0.7;
+        filter: saturate(0.8);
+        z-index: 2;
+    }
+
+    /* Foto de la izquierda */
+    .pila__item[data-pos="2"] {
+        left: 0;
+        transform: translateY(-50%) scale(0.88);
+        opacity: 0.7;
+        filter: saturate(0.8);
+        z-index: 2;
+    }
+
+    /* La estrella queda encima y no bloquea los toques */
+    .pila .slide__estrella {
+        z-index: 5;
+        pointer-events: none;
+    }
+
+    .slide__texto {
+        padding: 20px 55px 0;
+    }
+
+    .slide__texto p {
+        font-family: var(--fuente-principal);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 15px;
+        color: var(--crema);
+        text-align: left;
+        text-align-last: left;
+        margin-bottom: 15px;
+    }
+
+    .slide__cta {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    /* Puntos debajo del slider */
+    .slider__dots {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 24px;
+    }
+
+    .slider__dot {
+        width: 8px;
+        height: 8px;
+        padding: 0;
+        border: 0;
+        border-radius: 50%;
+        background-color: var(--crema);
+        opacity: 0.4;
+        cursor: pointer;
+        transition: opacity 0.3s ease;
+    }
+
+    .slider__dot.is-active {
+        opacity: 1;
+    }
+
+
+    /* ---------- 4. Sección crema: Mirar Bogotá ---------- */
+    .mirar-bogota {
+        background-color: var(--crema);
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .mirar-bogota__texto {
+        padding: 40px 55px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    /* Título en PNG: ocupa todo el ancho de la pantalla (ignora el padding) */
+    .mirar-bogota__titulo {
+        display: block;
+        width: calc(100% + 110px);
+        max-width: none;
+        height: auto;
+        flex-shrink: 0;
+        margin: 0 -55px 10px -55px;
+    }
+
+    .mirar-bogota__texto p {
+        font-family: var(--fuente-principal);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.3;
+        color: var(--azul);
+        margin-bottom: 15px;
+    }
+
+    .mirar-bogota__texto .mirar-bogota__pregunta {
+        font-weight: 700;
+        margin-top: 5px;
+        margin-bottom: 20px;
+    }
+
+    .btn-mirar {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 30px;
+        padding: 0 20px 3px;
+        border-radius: 25px;
+        background-color: var(--naranja);
+        color: var(--crema);
+        text-decoration: none;
+        font-family: var(--fuente-principal);
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 1;
+        white-space: nowrap;
+    }
+
+    .mirar-bogota__collage {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin-top: 10px;
+    }
+
+}
+
+
+/* ==========================================================
+   VERSIÓN ESCRITORIO  (desde 768px)
+   Aquí van los estilos que cambian en pantalla grande
+   ========================================================== */
+@media screen and (min-width: 768px) {
+
+    /* Pega aquí los estilos de escritorio */
+
+}

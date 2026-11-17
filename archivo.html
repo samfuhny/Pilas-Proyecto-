@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archivo visual | Gráfica popular</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,900&display=swap" rel="stylesheet">
+
+    <!-- Base compartida: variables, header, menú, botones y footer -->
+    <link rel="stylesheet" href="estiloquien.css">
+    <!-- Estilos propios de esta página -->
+    <link rel="stylesheet" href="archivo.css">
+</head>
+
+<body>
+
+    <div id="version-movil">
+
+        <!-- Encabezado: logo a la izquierda + menú hamburguesa -->
+        <header class="header">
+            <div class="logo-top">
+                <a href="ENTRADA.HTML">
+                    <img src="LOGOMENU.png" alt="Logo Pilas">
+                </a>
+            </div>
+
+            <!-- Checkboxes invisibles que controlan los menús sin JavaScript.
+                 Tienen que ir ANTES de .nav-menu (como hermanos) para que el CSS funcione. -->
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <input type="checkbox" id="submenu-toggle" class="submenu-toggle">
+
+            <label for="menu-toggle" class="hamburger-button" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <!-- Navegación a pantalla completa -->
+            <nav class="nav-menu">
+
+                <!-- Menú principal -->
+                <ul class="nav-list">
+                    <li><a href="QUIENESSOMOS.HTML" class="nav-link-menu">¿QUIÉNES SOMOS?</a></li>
+                    <li><a href="archivo.html" class="nav-link-menu">ARCHIVO</a></li>
+                    <li><a href="narrativa.html" class="nav-link-menu">NARRATIVA</a></li>
+                    <li><a href="#" class="nav-link-menu">EXPERIENCIA</a></li>
+                    <li><a href="tutorial.html" class="nav-link-menu">TUTORIALES</a></li>
+                    <!-- DESCUBRE abre el submenú -->
+                    <li><label for="submenu-toggle" class="nav-link-menu nav-link-submenu">DESCUBRE</label></li>
+                </ul>
+
+                <!-- Submenú de DESCUBRE -->
+                <div class="submenu">
+
+                    <!-- Flecha para volver al menú principal -->
+                    <label for="submenu-toggle" class="submenu-back" aria-label="Volver al menú">
+                        <svg viewBox="0 0 32 32" width="32" height="32" aria-hidden="true">
+                            <path d="M26 16 H7 M14 9 L7 16 L14 23"
+                                  fill="none" stroke="#FBF2DA" stroke-width="3"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </label>
+
+                    <div class="submenu-content">
+                        <img src="COMPRAAM.png" alt="Compra local" class="submenu-titulo">
+                        <p class="submenu-frase">
+                            Conoce las marcas que hacen a Bogotá y apóyalas.
+                        </p>
+
+                        <ul class="submenu-list">
+                            <li><a href="trend.html" class="submenu-btn">Ver todo</a></li>
+                            <li><a href="law.html" class="submenu-btn">Law Martinez</a></li>
+                            <li><a href="cloud.html" class="submenu-btn">Cloud</a></li>
+                            <li><a href="btacapital.html" class="submenu-btn">btá capital</a></li>
+                            <li><a href="trabajo.html" class="submenu-btn">trabajo honesto</a></li>
+                            <li><a href="vacaciones.html" class="submenu-btn">vacaciones</a></li>
+                            <li><a href="dontcare.html" class="submenu-btn">dontcare</a></li>
+                            <li><a href="manchado.html" class="submenu-btn">manchado</a></li>
+                            <li><a href="comajoyeria.html" class="submenu-btn">comajoyeria</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </nav>
+        </header>
+
+        <main class="main-content-layout">
+
+            <!-- ==========================================
+                 SECCIÓN ROJA: estrella azul + título
+                 ========================================== -->
+            <section class="archivo-hero">
+                <div class="archivo-hero__estrella">
+                    <img src="archivoestar.png" alt="Archivo visual gráfica popular" class="archivo-hero__img">
+                    <p class="archivo-hero__lead">Lo que la ciudad nos dejó, antes de <br>
+                        reinterpretar debemos observar, este <br>
+                        archivo inspira nuevas lecturas <br>
+                        visuales, conservando la identidad y <br>
+                        fuerza de la gráfica popular.</p>
+                </div>
+
+                <div class="archivo-hero__textos">
+                    <p>  </p>
+                    <p>Un recorrido visual construido desde archivos fotográficos reales, que rescatan la
+                        memoria gráfica popular y su impacto cultural, mediante nuevas propuestas creativas.</p>
+                </div>
+            </section>
+
+            <!-- ==========================================
+                 SECCIÓN AMARILLA: título en PNG + asterisco
+                 ========================================== -->
+            <section class="archivo-titulo">
+                <img src="historias.png" alt="Imágenes que cuentan historias" class="archivo-titulo__img">
+                <img src="ASTERISCO.png" alt="" class="archivo-titulo__asterisco">
+            </section>
+
+            <!-- ==========================================
+                 SECCIÓN VERDE: slider
+                 ========================================== -->
+            <section class="slider-section">
+
+                <div class="slider">
+
+                    <div class="slider__track">
+
+                        <!-- Diapositiva 1 -->
+                        <article class="slide">
+                            <div class="slide__foto pila">
+                                <img src="reja1.png" alt="Reja en una casa de Bogotá" class="pila__item">
+                                <img src="reja2.png" alt="Reja, detalle" class="pila__item">
+                                <img src="reja3.png" alt="Reja, otra casa" class="pila__item">
+                                <img src="estrella.png" alt="" class="slide__estrella">
+                                <img src="estrella.png" alt="" class="slide__estrella slide__estrella--abajo">
+                            </div>
+                            <div class="slide__texto">
+                                <p>Bogotá aprendió a protegerse detrás de las rejas. Aunque hoy parecen parte natural del paisaje urbano, su presencia tiene raíces históricas.</p>
+                                <p>Su uso se expandió por motivos de seguridad y protección. Hoy hacen parte de la identidad visual de muchos barrios bogotanos.</p>
+                                <div class="slide__cta">
+                                    <a href="narrativa.html" class="btn-orange">Conoce más</a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Diapositiva 2 -->
+                        <article class="slide">
+                            <div class="slide__foto pila">
+                                <img src="puesto1.png" alt="Puesto ambulante" class="pila__item">
+                                <img src="puesto2.png" alt="Puesto ambulante, detalle" class="pila__item">
+                                <img src="puesto3.png" alt="Puesto ambulante, otra calle" class="pila__item">
+                                <img src="estrella.png" alt="" class="slide__estrella">
+                                <img src="estrella.png" alt="" class="slide__estrella slide__estrella--abajo">
+                            </div>
+                            <div class="slide__texto">
+                                <p>En medio del movimiento constante de Bogotá, los puestos ambulantes se convirtieron en parte esencial del recorrido cotidiano.</p>
+                                <p>Bajo sombrillas de colores y plásticos que protegen del clima, aparecen espacios temporales de encuentro y supervivencia cotidiana.</p>
+                                <div class="slide__cta">
+                                    <a href="narrativa.html" class="btn-orange">Conoce más</a>
+                                </div>
+                            </div>
+                        </article>
+
+                        <!-- Diapositiva 3 -->
+                        <article class="slide">
+                            <div class="slide__foto pila">
+                                <img src="oficio1.png" alt="Barrio de oficio" class="pila__item">
+                                <img src="oficio2.png" alt="Barrio de oficio, detalle" class="pila__item">
+                                <img src="oficio3.png" alt="Barrio de oficio, otra calle" class="pila__item">
+                                <img src="estrella.png" alt="" class="slide__estrella">
+                                <img src="estrella.png" alt="" class="slide__estrella slide__estrella--abajo">
+                            </div>
+                            <div class="slide__texto">
+                                <p>Muchos barrios crecieron alrededor de un oficio específico hasta convertirse en puntos de referencia dentro de la ciudad.</p>
+                                <p>Con el tiempo, estos lugares construyeron recorridos, estéticas y paisajes visuales únicos que reflejan una ciudad organizada.</p>
+                                <div class="slide__cta">
+                                    <a href="narrativa.html" class="btn-orange">Conoce más</a>
+                                </div>
+                            </div>
+                        </article>
+
+                    </div>
+
+                    <!-- Puntos del slider (se generan solos, uno por diapositiva) -->
+                    <div class="slider__dots" aria-label="Diapositivas"></div>
+
+                </div>
+
+            </section>
+
+            <!-- ==========================================
+                 SECCIÓN CREMA: Mirar Bogotá
+                 ========================================== -->
+            <section class="mirar-bogota">
+                <div class="mirar-bogota__texto">
+                    <img src="MIRAR.png" alt="Mirar Bogotá" class="mirar-bogota__titulo">
+
+                    <p>Reconectar con las raíces de Bogotá es también volver a mirar aquello que siempre ha estado presente en nuestras calles, fachadas y memorias cotidianas.</p>
+
+                    <p>Cada reinterpretación no solo transforma una imagen, sino que resignifica elementos de la gráfica popular que cargan historias, identidad y formas de habitar la ciudad.</p>
+
+                    <p>Detrás de cada composición existe una reflexión sobre la memoria urbana, la cultura visual y el valor de lo que muchas veces pasa desapercibido.</p>
+
+                    <p class="mirar-bogota__pregunta">¿Reconociste algún elemento?</p>
+
+                    <a href="narrativa.html" class="btn-mirar">Sigue explorando</a>
+                </div>
+
+                <img src="paloma.png" alt="Señal, teléfono público, paloma y tarjeta en estilo gráfico popular" class="mirar-bogota__collage">
+            </section>
+
+        </main>
+    </div>
+
+
+    <!-- ==========================================
+         VERSIÓN ESCRITORIO
+         ========================================== -->
+    <div id="version-escritorio">
+
+        <!-- Aquí va el header, el contenido y las secciones de escritorio -->
+
+    </div>
+
+    <div class="franja-footer"></div>
+
+    <footer class="footer">
+        <img src="logofot.png" alt="Pilas" class="footer__logo">
+
+        <nav class="footer__nav">
+
+            <div class="footer__col">
+                <h3 class="footer__title">EXPLORAR</h3>
+                <ul class="footer__list">
+                    <li><a href="#">Experiencia</a></li>
+                    <li><a href="tutorial.html">Tutoriales</a></li>
+                    <li><a href="trend.html">Descubre</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__col">
+                <h3 class="footer__title">QUIÉNES SOMOS</h3>
+                <ul class="footer__list">
+                    <li><a href="ENTRADA.HTML">Inicio</a></li>
+                    <li><a href="narrativa.html">Narrativa</a></li>
+                    <li><a href="archivo.html">Archivo</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__col">
+                <h3 class="footer__title">FUNCIONAMIENTO</h3>
+                <ul class="footer__list">
+                    <li><a href="#">Términos y Condiciones</a></li>
+                    <li><a href="#">Política de Privacidad</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__col">
+                <h3 class="footer__title">CONTACTO</h3>
+                <ul class="footer__list">
+                    <li><a href="#">@pilas.bog</a></li>
+                    <li><a href="tel:+573143125406">3143125406</a></li>
+                    <li><span>Horario de Atención<br>8am - 7pm</span></li>
+                </ul>
+            </div>
+
+        </nav>
+    </footer>
+
+    <script>
+        /* ---------- Menú: al cerrar con la X, el submenú también se cierra ---------- */
+        document.getElementById('menu-toggle').addEventListener('change', function (e) {
+            if (!e.target.checked) {
+                document.getElementById('submenu-toggle').checked = false;
+            }
+        });
+
+        /* ---------- Puntos del slider ---------- */
+        const track = document.querySelector('.slider__track');
+        const slides = track.querySelectorAll('.slide');
+        const dotsBox = document.querySelector('.slider__dots');
+
+        // Crea un punto por cada diapositiva
+        slides.forEach(function (_, i) {
+            const dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = 'slider__dot';
+            dot.setAttribute('aria-label', 'Ir a la diapositiva ' + (i + 1));
+            dot.addEventListener('click', function () {
+                track.scrollTo({ left: track.clientWidth * i, behavior: 'smooth' });
+            });
+            dotsBox.appendChild(dot);
+        });
+
+        const dots = dotsBox.querySelectorAll('.slider__dot');
+
+        // Marca el punto de la diapositiva que se está viendo
+        function marcarPunto() {
+            const i = Math.round(track.scrollLeft / track.clientWidth);
+            dots.forEach(function (d, n) {
+                d.classList.toggle('is-active', n === i);
+            });
+        }
+
+        track.addEventListener('scroll', marcarPunto);
+        marcarPunto();
+
+        /* ---------- Pila de fotos: al tocar una, pasa al centro ---------- */
+        document.querySelectorAll('.pila').forEach(function (pila) {
+            const items = pila.querySelectorAll('.pila__item');
+            let activo = 0;
+
+            function pintar() {
+                items.forEach(function (item, i) {
+                    item.dataset.pos = (i - activo + items.length) % items.length;
+                });
+            }
+
+            items.forEach(function (item, i) {
+                item.addEventListener('click', function () {
+                    activo = i;
+                    pintar();
+                });
+            });
+
+            pintar();
+        });
+    </script>
+
+</body>
+
+</html>

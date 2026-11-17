@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marcas Locales</title>
+
+    <!-- Bricolage Grotesque desde Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,900&display=swap" rel="stylesheet">
+
+    <!-- Estilos propios -->
+    <link rel="stylesheet" href="trend.css">
+</head>
+
+<body>
+
+    <!-- ==========================================
+         VERSIÓN MÓVIL
+         ========================================== -->
+    <div id="version-movil">
+
+        <!-- Encabezado: logo a la izquierda + menú hamburguesa -->
+        <header class="header">
+            <div class="logo-top">
+                <a href="ENTRADA.HTML">
+                    <img src="LOGOMENU.png" alt="Logo Pilas">
+                </a>
+            </div>
+
+            <!-- Checkboxes invisibles que controlan los menús sin JavaScript.
+                 Tienen que ir ANTES de .nav-menu (como hermanos) para que el CSS funcione. -->
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <input type="checkbox" id="submenu-toggle" class="submenu-toggle">
+
+            <label for="menu-toggle" class="hamburger-button" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <!-- Navegación a pantalla completa -->
+            <nav class="nav-menu">
+
+                <!-- Menú principal -->
+                <ul class="nav-list">
+                    <li><a href="QUIENESSOMOS.HTML" class="nav-link-menu">¿QUIÉNES SOMOS?</a></li>
+                    <li><a href="archivo.html" class="nav-link-menu">ARCHIVO</a></li>
+                    <li><a href="narrativa.html" class="nav-link-menu">NARRATIVA</a></li>
+                    <li><a href="#" class="nav-link-menu">EXPERIENCIA</a></li>
+                    <li><a href="tutorial.html" class="nav-link-menu">TUTORIALES</a></li>
+                    <!-- DESCUBRE abre el submenú -->
+                    <li><label for="submenu-toggle" class="nav-link-menu nav-link-submenu">DESCUBRE</label></li>
+                </ul>
+
+                <!-- Submenú de DESCUBRE -->
+                <div class="submenu">
+
+                    <!-- Flecha para volver al menú principal -->
+                    <label for="submenu-toggle" class="submenu-back" aria-label="Volver al menú">
+                        <svg viewBox="0 0 32 32" width="32" height="32" aria-hidden="true">
+                            <path d="M26 16 H7 M14 9 L7 16 L14 23"
+                                  fill="none" stroke="#FBF2DA" stroke-width="3"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </label>
+
+                    <div class="submenu-content">
+                        <img src="COMPRAAM.png" alt="Compra local" class="submenu-titulo">
+                        <p class="submenu-frase">
+                            Conoce las marcas que hacen a Bogotá y apóyalas.
+                        </p>
+
+                        <ul class="submenu-list">
+                            <li><a href="trend.html" class="submenu-btn">Ver todo</a></li>
+                            <li><a href="law.html" class="submenu-btn">Law Martinez</a></li>
+                            <li><a href="cloud.html" class="submenu-btn">Cloud</a></li>
+                            <li><a href="btacapital.html" class="submenu-btn">btá capital</a></li>
+                            <li><a href="trabajo.html" class="submenu-btn">trabajo honesto</a></li>
+                            <li><a href="vacaciones.html" class="submenu-btn">vacaciones</a></li>
+                            <li><a href="dontcare.html" class="submenu-btn">dontcare</a></li>
+                            <li><a href="manchado.html" class="submenu-btn">manchado</a></li>
+                            <li><a href="comajoyeria.html" class="submenu-btn">comajoyeria</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </nav>
+        </header>
+
+        <!-- Contenido principal (móvil) -->
+        <main class="main-content-layout">
+
+            <!-- 1. Hero: PNG + texto blanco + botón -->
+            <section class="hero-grafica">
+                <img src="holi.png" alt="La gráfica popular se transformó" class="hero-grafica__img">
+                <div class="hero-grafica__contenido">
+                    <p class="hero-grafica__texto">Hoy existen<br>personas, marcas y<br>proyectos que<br>toman elementos<br>de nuestra cultura<br>visual y los llevan a<br>nuevos productos y<br>lenguajes.</p>
+                    <a href="#" class="btn-rosa">Descúbrelo</a>
+                </div>
+            </section>
+
+            <!-- 2. Frase: todo es un PNG -->
+            <section class="frase-local">
+                <img src="fraselarga.png" alt="Elegir lo local no solo fortalece emprendimientos, también ayuda a preservar la esencia creativa y visual que hace única a Bogotá" class="frase-local__img">
+            </section>
+
+            <!-- 3 y 4. Descubre: pastilla + mosaico (cada cuadro es un botón con color e imagen) -->
+            <section class="descubre">
+
+                <div class="descubre__card">
+                    <p class="descubre__titulo">Descubre quiénes están reinterpretando Bogotá</p>
+                    <span class="descubre__aviso">Clique todo cuadro para descubrirlo</span>
+                </div>
+
+                <!-- Mosaico (la textura textura.png se pone desde el CSS, en .mosaico::before) -->
+               <div class="mosaico">
+
+    <!-- Columna izquierda -->
+    <div class="mosaico__col">
+        <a href="law.html" class="tile tile--rosa tile--m" aria-label="ABC Colombiano">
+            <img src="abc.png" alt="ABC Colombiano">
+        </a>
+        <a href="cloud.html" class="tile tile--naranja tile--s" aria-label="Cloud">
+            <img src="cloud.png" alt="Cloud">
+        </a>
+        <a href="vacaciones.html" class="tile tile--rojo tile--l" aria-label="Vacaciones">
+            <img src="vacaciones.png" alt="Vacaciones">
+        </a>
+        <a href="dontcare.html" class="tile tile--verde tile--s" aria-label="Dontcare">
+            <img src="dontcare.png" alt="Dontcarebrand">
+        </a>
+    </div>
+
+    <!-- Columna derecha -->
+    <div class="mosaico__col">
+        <a href="btacapital.html" class="tile tile--azul tile--s" aria-label="BTA Capital">
+            <img src="btacap.png" alt="BTA Capital">
+        </a>
+        <a href="trabajo.html" class="tile tile--amarillo tile--m" aria-label="Trabajo honesto">
+            <img src="trabajohonesto.png" alt="Trabajo honesto">
+        </a>
+        <a href="manchado.html" class="tile tile--naranja tile--s" aria-label="Manchado">
+            <img src="manchado.png" alt="Manchado">
+        </a>
+        <a href="comajoyeria.html" class="tile tile--azul tile--l" aria-label="Coma">
+            <img src="coma.png" alt="Coma">
+        </a>
+    </div>
+
+</div>
+
+            </section>
+
+        </main>
+    </div>
+
+
+    <!-- ==========================================
+         VERSIÓN ESCRITORIO
+         ========================================== -->
+    <div id="version-escritorio">
+
+        <!-- Aquí va el header, el contenido y las secciones de escritorio -->
+
+    </div>
+
+
+    <!-- ==========================================
+         FOOTER (compartido)
+         ========================================== -->
+    <div class="franja-footer"></div>
+    <footer class="footer">
+        <img src="logofot.png" alt="Pilas" class="footer__logo">
+
+        <nav class="footer__nav">
+
+            <div class="footer__col">
+                <h3 class="footer__title">EXPLORAR</h3>
+                <ul class="footer__list">
+                    <li><a href="#">Experiencia</a></li>
+                    <li><a href="tutorial.html">Tutoriales</a></li>
+                    <li><a href="trend.html">Descubre</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__col">
+                <h3 class="footer__title">QUIÉNES SOMOS</h3>
+                <ul class="footer__list">
+                    <li><a href="ENTRADA.HTML">Inicio</a></li>
+                    <li><a href="narrativa.html">Narrativa</a></li>
+                    <li><a href="archivo.html">Archivo</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__col">
+                <h3 class="footer__title">FUNCIONAMIENTO</h3>
+                <ul class="footer__list">
+                    <li><a href="#">Términos y Condiciones</a></li>
+                    <li><a href="#">Política de Privacidad</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__col">
+                <h3 class="footer__title">CONTACTO</h3>
+                <ul class="footer__list">
+                    <li><a href="#">@pilas.bog</a></li>
+                    <li><a href="tel:+573143125406">3143125406</a></li>
+                    <li><span>Horario de Atención<br>8am - 7pm</span></li>
+                </ul>
+            </div>
+
+        </nav>
+    </footer>
+
+    <!-- Al cerrar el menú principal, el submenú también se reinicia,
+         así la próxima vez que se abra empieza en el menú principal -->
+    <script>
+        document.getElementById('menu-toggle').addEventListener('change', function (e) {
+            if (!e.target.checked) {
+                document.getElementById('submenu-toggle').checked = false;
+            }
+        });
+    </script>
+
+</body>
+
+</html>

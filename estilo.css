@@ -1,0 +1,667 @@
+/* ==========================================
+   1. TIPOGRAFÍA
+========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,900&display=swap');
+
+
+/* ==========================================
+   2. COLORES DE PILAS + AJUSTES DEL BOTÓN
+========================================== */
+
+:root {
+
+    --rojo: #D3362E;
+    --amarillo: #FDC913;
+    --rosa: #ECA5C9;
+    --crema: #FBF2DA;
+    --azul: #2E5FA9;
+    --verde: #00A04B;
+    --naranja: #E5521D;
+
+    --fuente-principal: 'Bricolage Grotesque', sans-serif;
+
+    /* Botón azul */
+    --boton-tamano: 50px;      
+    --boton-margen: 50px;      
+    --padding-lado: 40px;
+    --boton-retraso: 2s;       /* cuánto tarda en aparecer el botón */
+    --bajar-png: 24px;         /* cuánto se baja el PNG de story1 para que el botón cuadre con ENTRADA */
+
+}
+
+
+/* ==========================================
+   3. CONFIGURACIÓN GENERAL
+========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    background-color: var(--rojo);
+    font-family: var(--fuente-principal), system-ui, -apple-system, sans-serif;
+    color: var(--amarillo);
+    overflow-x: hidden;
+}
+
+
+/* ==========================================
+   4. CONTROL DE VERSIONES
+========================================== */
+
+#version-escritorio {
+    display: block;
+}
+
+#version-movil {
+    display: none;
+}
+
+
+/* ==========================================
+   5. MENÚ DE ESCRITORIO
+========================================== */
+
+.desktop-header {
+    width: 100%;
+    background-color: var(--rojo);
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-container {
+    width: 100%;
+    max-width: 1400px;
+    padding: 0 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 45px;
+}
+
+.nav-link {
+    color: var(--crema);
+    text-decoration: none;
+    font-family: var(--fuente-principal);
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: opacity 0.2s ease;
+}
+
+.nav-link:hover {
+    opacity: 0.7;
+}
+
+.nav-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 140px;
+    margin: 0 10px;
+}
+
+.logo-img {
+    display: block;
+    width: 120px;
+    height: auto;
+}
+
+
+/* ==========================================
+   6. CONTENIDO PRINCIPAL
+========================================== */
+
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 100px);
+    padding: var(--padding-lado);
+}
+
+.hero-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* ==========================================
+   7. ESPACIO PARA LA ANIMACIÓN (Centrado total)
+========================================== */
+
+.animation-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center; /* Centrado horizontal */
+    align-items: center;     /* Centrado vertical */
+}
+
+.hero-gif {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+/* Recorte del video: agranda un poco el video hacia la derecha y abajo
+   y esconde el exceso, así desaparece la línea del borde. */
+.video-recorte {
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.video-recorte .hero-gif {
+    width: 100%;
+    height: auto;
+    transform: scale(1.06);
+    transform-origin: top left;
+}
+
+/* ==========================================
+   7.1 BOTÓN AZUL (rombo con flecha)
+========================================== */
+
+.boton-flecha {
+    
+    --boton-tamano: 40px;
+    right: 0;
+    bottom: 30px;
+
+    position: absolute;
+    bottom: 0;
+    right: calc(var(--boton-margen) - var(--padding-lado));
+
+    display: block;
+    width: var(--boton-tamano);
+    aspect-ratio: 1 / 1;
+
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
+
+    /* Aparece con retraso: oculto durante --boton-retraso y luego entra con fade */
+    animation: boton-aparece 0.6s ease var(--boton-retraso) both;
+}
+
+/* Solo anima opacity/visibility, para no pisar el transform del hover.
+   Lo usan el botón de ENTRADA y el de story1. */
+@keyframes boton-aparece {
+    from {
+        opacity: 0;
+        visibility: hidden;
+    }
+    to {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.boton-flecha-svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+@media (hover: hover) {
+    .boton-flecha:hover {
+        transform: scale(1.15) rotate(-5deg);
+        filter: brightness(1.1);
+    }
+}
+
+.boton-flecha:active {
+    transform: scale(0.95) rotate(0deg);
+}
+
+.boton-flecha:focus-visible {
+    outline: 3px solid var(--crema);
+    outline-offset: 4px;
+    border-radius: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .boton-flecha {
+        transition: none;
+        animation: none;
+    }
+}
+
+
+/* ==========================================
+   8. VERSIÓN MÓVIL
+========================================== */
+
+/* ==========================================================
+   5. VERSIÓN MÓVIL (hasta 767px)
+   ========================================================== */
+@media screen and (max-width: 767px) {
+
+    #version-escritorio {
+        display: none;
+    }
+
+    #version-movil {
+        display: block;
+    }
+
+    /* ---------- 5.1 Header y menú hamburguesa ---------- */
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 65px;
+        background-color: var(--rojo);
+        padding: 0 24px;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo-top img {
+        height: 30px;
+        width: auto;
+        display: block;
+    }
+
+    /* Los dos checkboxes quedan ocultos: solo sirven de "interruptor" */
+    .menu-toggle,
+    .submenu-toggle {
+        display: none;
+    }
+
+    .hamburger-button {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 20px;
+        cursor: pointer;
+        z-index: 1001;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .hamburger-button span {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background-color: var(--crema);
+        transition: all 0.3s ease;
+    }
+
+    /* Menú principal a pantalla completa (entra desde la derecha) */
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        background-color: var(--rojo);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.4s ease;
+    }
+
+    .menu-toggle:checked ~ .nav-menu {
+        right: 0;
+    }
+
+    .nav-list {
+        list-style: none;
+        text-align: center;
+    }
+
+    .nav-list li {
+        margin: 22px 0;
+    }
+
+    .nav-link-menu {
+        color: var(--crema);
+        text-decoration: none;
+        font-family: var(--fuente-principal);
+        font-size: 20px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        display: inline-block;
+    }
+
+    /* DESCUBRE es un <label> (abre el submenú), no un link */
+    .nav-link-submenu {
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+
+    /* ---------- 5.1b Submenú de DESCUBRE ----------
+       Es otro panel a pantalla completa que se desliza encima
+       del menú principal cuando el checkbox #submenu-toggle está marcado. */
+    .submenu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        background-color: var(--rojo);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 90px 24px 40px;
+        overflow-y: auto;
+        /* Oculto mientras está cerrado (no recibe clics ni foco) */
+        visibility: hidden;
+        transition: right 0.4s ease, visibility 0s linear 0.4s;
+    }
+
+    /* El submenú solo se ve si el menú principal Y el submenú están abiertos.
+       Así, al tocar la X (que cierra el menú principal), el submenú se va con él. */
+    .menu-toggle:checked ~ .submenu-toggle:checked ~ .nav-menu .submenu {
+        right: 0;
+        visibility: visible;
+        transition: right 0.4s ease, visibility 0s;
+    }
+
+    /* Flecha arriba a la izquierda: vuelve al menú principal */
+    .submenu-back {
+        position: fixed;
+        top: 17px;
+        left: 24px;
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+        z-index: 2;
+        -webkit-tap-highlight-color: transparent;
+        transition: transform 0.2s ease;
+    }
+
+    .submenu-back svg {
+        display: block;
+    }
+
+    .submenu-back:active {
+        transform: translateX(-3px);
+    }
+
+    /* Contenido del submenú: frase + lista, centrado */
+    .submenu-content {
+        width: 100%;
+        margin: auto 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    /* Título "Compra local" (PNG a tamaño real; solo se achica si no cabe) */
+    .submenu-titulo {
+        display: block;
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 12px;
+    }
+
+    /* Frase debajo del título: caja roja redondeada con texto blanco */
+    .submenu-frase {
+        max-width: 230px;
+        margin-bottom: 30px;
+        padding: 16px 22px;
+        border-radius: 28px;
+        background-color: var(--amarillo);
+        font-family: var(--fuente-principal);
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.4;
+        color: var(--azul);
+}
+    /* Lista: mismo estilo que el menú principal (texto azul, sin botones) */
+    .submenu-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 22px;
+    }
+
+    .submenu-btn {
+        display: inline-block;
+        color: var(--crema);
+        text-decoration: none;
+        font-family: var(--fuente-principal);
+        font-size: 20px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        -webkit-tap-highlight-color: transparent;
+        transition: transform 0.2s ease;
+    }
+
+    .submenu-btn:active {
+        transform: scale(0.96);
+    }
+
+    .submenu-btn:focus-visible,
+    .nav-link-menu:focus-visible {
+        outline: 3px solid var(--rojo);
+        outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .nav-menu,
+        .submenu,
+        .submenu-btn,
+        .submenu-back {
+            transition: none;
+        }
+    }
+ /* Animación de hamburguesa a X */
+
+    .menu-toggle:checked ~ .hamburger-button span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .menu-toggle:checked ~ .hamburger-button span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle:checked ~ .hamburger-button span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+
+
+    /* ---------- 5.1c Contenido de ENTRADA (móvil) ---------- */
+
+    /* En móvil .main-content tiene 20px de padding lateral */
+    :root {
+        --padding-lado: 20px;
+    }
+
+    .main-content {
+        min-height: 100vh;
+        min-height: 100dvh;
+        padding: 65px var(--padding-lado) 0;
+    }
+
+    /* El contenedor se ajusta al tamaño real del GIF, así el botón
+       queda pegado a su esquina inferior derecha. */
+    .animation-container {
+        width: fit-content;
+        max-width: 100%;
+        height: auto;
+        min-height: 0;
+    }
+
+    /* Sube el video sin mover el botón (el botón está anclado al borde
+       inferior del contenedor, así que no se afecta).  Más alto = sube más. */
+    .animation-container .video-recorte {
+        transform: translateY(-45px);
+    }
+
+    .boton-flecha {
+        --boton-tamano: 40px;
+        right: 50px;
+        bottom: 0;
+    }
+
+
+    /* ---------- 5.2 Contenido principal ---------- */
+    .main-content-layout {
+        padding-top: 65px;
+        width: 100%;
+    }
+
+    /* ---------- 5.3 Sección Territorio Bogotano ----------
+       El PNG ya trae su propio margen, fondo y decoración,
+       así que la sección no le agrega padding ni límite de ancho. */
+    .territorio-section {
+        padding: 0;
+        width: 100%;
+        display: block;
+    }
+
+    /* El wrapper se ajusta al tamaño real del PNG, así el botón
+       se posiciona sobre la imagen y no sobre la pantalla. */
+    .territorio-wrapper {
+        position: relative;
+        display: block;
+        width: fit-content;
+        max-width: 100%;
+        margin: var(--bajar-png) auto 0;
+    }
+
+    /* PNG a tamaño real; solo se achica si no cabe en la pantalla */
+    .territorio-title {
+        display: block;
+        width: auto;
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Botón rombo azul (SVG en el HTML), atado al PNG.
+       Posición, tamaño y centrado van en porcentajes de la imagen,
+       así el botón escala con ella y siempre queda en el mismo punto
+       del cuadro amarillo, sin importar el ancho de la pantalla.
+       - left / top: dónde queda el centro del botón (77% del ancho, 87.6% del alto)
+       - width: 10% del ancho de la imagen
+       - margin negativo = la mitad del ancho, para centrarlo en ese punto
+       - animation: aparece con retraso (fade-in), igual que en ENTRADA */
+    .territorio-btn {
+        position: absolute;
+        left: 77%;
+        top: 87.6%;
+        width: 10%;
+        aspect-ratio: 1 / 1;
+        margin-left: -5%;
+        margin-top: -5%;
+        animation: boton-aparece 0.6s ease var(--boton-retraso) both;
+        display: block;
+        text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
+    }
+
+    .territorio-btn-svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+    }
+
+    /* Animación de hover y active */
+    .territorio-btn:hover {
+        transform: scale(1.15) rotate(-5deg);
+        filter: brightness(1.1);
+    }
+
+    .territorio-btn:active {
+        transform: scale(0.95) rotate(0deg);
+    }
+
+    .territorio-btn:focus-visible {
+        outline: 3px solid var(--rojo);
+        outline-offset: 4px;
+        border-radius: 8px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .territorio-btn {
+            transition: none;
+            animation: none;
+        }
+    }
+
+    /* ---------- 5.4 Footer móvil ---------- */
+    .footer {
+        padding: 20px 20px 24px;
+    }
+
+    .footer__logo {
+        width: 190px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+
+    .footer__nav {
+        display: grid;
+        grid-template-columns: auto;
+        justify-content: center;
+        justify-items: center;
+        row-gap: 16px;
+        width: 100%;
+    }
+
+    .footer__col {
+        text-align: center;
+    }
+
+    .footer__title {
+        font-size: 13px;
+        margin-bottom: 6px;
+    }
+
+    .footer__list {
+        padding-left: 0;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .footer__list a,
+    .footer__list span {
+        font-size: 12px;
+        line-height: 1.25;
+    }
+
+}
+
+
+/* ==========================================================
+   6. VERSIÓN ESCRITORIO (desde 768px)
+   ========================================================== */
+@media screen and (min-width: 768px) {
+    /* Agrega aquí los estilos de escritorio cuando los necesites */
+}

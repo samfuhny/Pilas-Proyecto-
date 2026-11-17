@@ -1,0 +1,544 @@
+/* ==========================================
+   1. TIPOGRAFÍAS
+   Bricolage Grotesque se carga desde el <link> del HTML.
+   ========================================== */
+@font-face {
+    font-family: 'Oferta do Dia';
+    src: url('fonts/OfertaDoDia.woff2') format('woff2'),
+         url('fonts/OfertaDoDia.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,900&display=swap');
+
+
+/* ==========================================
+   2. VARIABLES (colores y fuentes de marca)
+   ========================================== */
+:root {
+    --rojo: #D3362E;
+    --amarillo: #FDC913;
+    --rosa: #ECA5C9;
+    --crema: #FBF2DA;
+    --azul: #2E5FA9;
+    --azul-linea: #2E5FA9;
+    --verde: #00A04B;
+    --naranja: #E5521D;
+    --naranja-footer: #E5521D;
+    --fuente-principal: 'Bricolage Grotesque', sans-serif;
+    --fuente-marca: 'Oferta do Dia', sans-serif;
+
+    /* Secuencia de entrada: primero aparece el PNG y luego el botón */
+    --boton-retraso: 2s;   /* cuánto tarda en aparecer el botón (igual que en ENTRADA) */
+    --bajar-png: 24px;     /* cuánto se baja el PNG para que el botón cuadre con ENTRADA */
+}
+
+/* Solo animan opacity/visibility, para no pisar el transform del hover */
+@keyframes png-aparece {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes boton-aparece {
+    from {
+        opacity: 0;
+        visibility: hidden;
+    }
+    to {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+
+/* ==========================================
+   3. ESTILOS GENERALES
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--crema);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow-x: hidden;
+}
+
+#version-movil {
+    display: none;
+}
+
+#version-escritorio {
+    display: block;
+}
+
+
+/* ==========================================
+   4. FOOTER (compartido)
+   ========================================== */
+.footer {
+    background-color: var(--crema);
+    padding: 24px 20px 32px;
+    font-family: var(--fuente-principal);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer__logo {
+    display: block;
+    width: 160px;
+    height: auto;
+    margin-bottom: 24px;
+}
+
+.footer__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: fit-content;
+    max-width: 100%;
+}
+
+.footer__title {
+    margin: 0 0 8px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--naranja-footer);
+    letter-spacing: 0.2px;
+}
+
+.footer__list {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer__list a,
+.footer__list span {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--azul);
+    text-decoration: none;
+}
+
+.footer__list a:hover {
+    text-decoration: underline;
+}
+
+/* Franja de color arriba del footer: línea azul + banda naranja.
+   Va fuera de los bloques móvil/escritorio, así sirve para los dos. */
+.franja-footer3 {
+    width: 100%;
+    height: 24px;
+    background-color: var(--naranja);
+}
+
+@media (min-width: 768px) {
+    .footer__nav {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 40px;
+    }
+}
+
+
+/* ==========================================================
+   5. VERSIÓN MÓVIL (hasta 767px)
+   ========================================================== */
+@media screen and (max-width: 767px) {
+
+    #version-escritorio {
+        display: none;
+    }
+
+    #version-movil {
+        display: block;
+    }
+
+    /* ---------- 5.1 Header y menú hamburguesa ---------- */
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 65px;
+        background-color: var(--crema);
+        padding: 0 24px;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo-top img {
+        height: 30px;
+        width: auto;
+        display: block;
+    }
+
+    /* Los dos checkboxes quedan ocultos: solo sirven de "interruptor" */
+    .menu-toggle,
+    .submenu-toggle {
+        display: none;
+    }
+
+    .hamburger-button {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 20px;
+        cursor: pointer;
+        z-index: 1001;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .hamburger-button span {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background-color: var(--azul);
+        transition: all 0.3s ease;
+    }
+
+    /* Menú principal a pantalla completa (entra desde la derecha) */
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        background-color: var(--crema);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.4s ease;
+    }
+
+    .menu-toggle:checked ~ .nav-menu {
+        right: 0;
+    }
+
+    .nav-list {
+        list-style: none;
+        text-align: center;
+    }
+
+    .nav-list li {
+        margin: 22px 0;
+    }
+
+    .nav-link-menu {
+        color: var(--azul);
+        text-decoration: none;
+        font-family: var(--fuente-principal);
+        font-size: 20px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        display: inline-block;
+    }
+
+    /* DESCUBRE es un <label> (abre el submenú), no un link */
+    .nav-link-submenu {
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+
+    /* ---------- 5.1b Submenú de DESCUBRE ----------
+       Es otro panel a pantalla completa que se desliza encima
+       del menú principal cuando el checkbox #submenu-toggle está marcado. */
+    .submenu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        background-color: var(--crema);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 90px 24px 40px;
+        overflow-y: auto;
+        /* Oculto mientras está cerrado (no recibe clics ni foco) */
+        visibility: hidden;
+        transition: right 0.4s ease, visibility 0s linear 0.4s;
+    }
+
+    .submenu-toggle:checked ~ .nav-menu .submenu {
+        right: 0;
+        visibility: visible;
+        transition: right 0.4s ease, visibility 0s;
+    }
+
+    /* Flecha arriba a la izquierda: vuelve al menú principal */
+    .submenu-back {
+        position: fixed;
+        top: 17px;
+        left: 24px;
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+        z-index: 2;
+        -webkit-tap-highlight-color: transparent;
+        transition: transform 0.2s ease;
+    }
+
+    .submenu-back svg {
+        display: block;
+    }
+
+    .submenu-back:active {
+        transform: translateX(-3px);
+    }
+
+    /* Contenido del submenú: frase + lista, centrado */
+    .submenu-content {
+        width: 100%;
+        margin: auto 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    /* Título "Compra local" (PNG a tamaño real; solo se achica si no cabe) */
+    .submenu-titulo {
+        display: block;
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 12px;
+    }
+
+    /* Frase debajo del título: caja roja redondeada con texto blanco */
+    .submenu-frase {
+        max-width: 230px;
+        margin-bottom: 30px;
+        padding: 16px 22px;
+        border-radius: 28px;
+        background-color: var(--rojo);
+        font-family: var(--fuente-principal);
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.4;
+        color: var(--crema);
+    }
+
+    /* Lista: mismo estilo que el menú principal (texto azul, sin botones) */
+    .submenu-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 22px;
+    }
+
+    .submenu-btn {
+        display: inline-block;
+        color: var(--azul);
+        text-decoration: none;
+        font-family: var(--fuente-principal);
+        font-size: 20px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        -webkit-tap-highlight-color: transparent;
+        transition: transform 0.2s ease;
+    }
+
+    .submenu-btn:active {
+        transform: scale(0.96);
+    }
+
+    .submenu-btn:focus-visible,
+    .nav-link-menu:focus-visible {
+        outline: 3px solid var(--rojo);
+        outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .nav-menu,
+        .submenu,
+        .submenu-btn,
+        .submenu-back {
+            transition: none;
+        }
+    }
+
+    /* Animación de hamburguesa a X */
+    .menu-toggle:checked ~ .hamburger-button span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .menu-toggle:checked ~ .hamburger-button span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle:checked ~ .hamburger-button span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+
+
+    /* ---------- 5.2 Contenido principal ---------- */
+    .main-content-layout {
+        padding-top: 65px;
+        width: 100%;
+    }
+
+    /* ---------- 5.3 Sección Territorio Bogotano ----------
+       El PNG del cuadro amarillo ya trae su propio margen y decoración
+       (debe ser transparente fuera del cuadro). Por DETRÁS va fondo1.png,
+       puesto como fondo de la sección: no mueve ni cambia el tamaño
+       del cuadro amarillo ni del botón.
+       display: flow-root evita que el margen superior del wrapper
+       se "salga" de la sección, así el fondo cubre también esos píxeles. */
+    .territorio-section {
+        padding: 0;
+        width: 100%;
+        display: flow-root;
+
+        background-color: var(--crema);          /* respaldo mientras carga */
+        background-image: url('fondo1.png');
+        background-size: cover;                  /* cubre todo el ancho y alto de la sección */
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    /* El wrapper se ajusta al tamaño real del PNG, así el botón
+       se posiciona sobre la imagen y no sobre la pantalla. */
+    .territorio-wrapper {
+        position: relative;
+        display: block;
+        width: fit-content;
+        max-width: 100%;
+        margin: var(--bajar-png) auto 0;
+    }
+
+    /* PNG a tamaño real; solo se achica si no cabe en la pantalla */
+    .territorio-title {
+        animation: png-aparece 0.5s ease both;
+        display: block;
+        width: auto;
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Botón rombo azul (SVG en el HTML), atado al PNG.
+       Posición, tamaño y centrado van en porcentajes de la imagen,
+       así el botón escala con ella y siempre queda en el mismo punto
+       del cuadro amarillo, sin importar el ancho de la pantalla.
+       - left / top: dónde queda el centro del botón (77% del ancho, 87.6% del alto)
+       - width: 10% del ancho de la imagen
+       - margin negativo = la mitad del ancho, para centrarlo en ese punto
+       - animation: aparece con retraso (fade-in), después del PNG */
+    .territorio-btn {
+        position: absolute;
+        left: 77%;
+        top: 87.6%;
+        width: 10%;
+        aspect-ratio: 1 / 1;
+        margin-left: -5%;
+        margin-top: -5%;
+        animation: boton-aparece 0.6s ease var(--boton-retraso) both;
+        display: block;
+        text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
+        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease;
+    }
+
+    .territorio-btn-svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+    }
+
+    /* Animación de hover y active */
+    .territorio-btn:hover {
+        transform: scale(1.15) rotate(-5deg);
+        filter: brightness(1.1);
+    }
+
+    .territorio-btn:active {
+        transform: scale(0.95) rotate(0deg);
+    }
+
+    .territorio-btn:focus-visible {
+        outline: 3px solid var(--rojo);
+        outline-offset: 4px;
+        border-radius: 8px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .territorio-btn {
+            transition: none;
+            animation: none;
+        }
+
+        .territorio-title {
+            animation: none;
+        }
+    }
+
+    /* ---------- 5.4 Footer móvil ---------- */
+    .footer {
+        padding: 20px 20px 24px;
+    }
+
+    .footer__logo {
+        width: 190px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+
+    .footer__nav {
+        display: grid;
+        grid-template-columns: auto;
+        justify-content: center;
+        justify-items: center;
+        row-gap: 16px;
+        width: 100%;
+    }
+
+    .footer__col {
+        text-align: center;
+    }
+
+    .footer__title {
+        font-size: 13px;
+        margin-bottom: 6px;
+    }
+
+    .footer__list {
+        padding-left: 0;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .footer__list a,
+    .footer__list span {
+        font-size: 12px;
+        line-height: 1.25;
+    }
+
+}
+
+
+/* ==========================================================
+   6. VERSIÓN ESCRITORIO (desde 768px)
+   ========================================================== */
+@media screen and (min-width: 768px) {
+    /* Agrega aquí los estilos de escritorio cuando los necesites */
+}

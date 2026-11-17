@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coma Joyería</title>
+
+    <!-- Bricolage Grotesque desde Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,900&display=swap" rel="stylesheet">
+
+    <!-- Estilos propios -->
+    <link rel="stylesheet" href="comajoyeria.css">
+</head>
+
+<body>
+
+    <!-- ==========================================
+         VERSIÓN MÓVIL
+         ========================================== -->
+    <div id="version-movil">
+
+        <header class="header">
+            <div class="logo-top">
+                <a href="ENTRADA.HTML">
+                    <img src="LOGOMENU.png" alt="Logo Pilas">
+                </a>
+            </div>
+
+            <!-- Checkboxes invisibles que controlan los menús sin JavaScript.
+                 Tienen que ir ANTES de .nav-menu (como hermanos) para que el CSS funcione. -->
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <input type="checkbox" id="submenu-toggle" class="submenu-toggle">
+
+            <label for="menu-toggle" class="hamburger-button" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <!-- Navegación a pantalla completa -->
+            <nav class="nav-menu">
+
+                <!-- Menú principal -->
+                <ul class="nav-list">
+                    <li><a href="QUIENESSOMOS.HTML" class="nav-link-menu">¿QUIÉNES SOMOS?</a></li>
+                    <li><a href="archivo.html" class="nav-link-menu">ARCHIVO</a></li>
+                    <li><a href="narrativa.html" class="nav-link-menu">NARRATIVA</a></li>
+                    <li><a href="#" class="nav-link-menu">EXPERIENCIA</a></li>
+                    <li><a href="tutorial.html" class="nav-link-menu">TUTORIALES</a></li>
+                    <!-- DESCUBRE abre el submenú -->
+                    <li><label for="submenu-toggle" class="nav-link-menu nav-link-submenu">DESCUBRE</label></li>
+                </ul>
+
+                <!-- Submenú de DESCUBRE: salta directo a cualquier marca -->
+                <div class="submenu">
+
+                    <!-- Flecha para volver al menú principal -->
+                    <label for="submenu-toggle" class="submenu-back" aria-label="Volver al menú">
+                        <svg viewBox="0 0 32 32" width="32" height="32" aria-hidden="true">
+                            <path d="M26 16 H7 M14 9 L7 16 L14 23"
+                                  fill="none" stroke="#FBF2DA" stroke-width="3"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </label>
+
+                    <div class="submenu-content">
+                        <img src="COMPRAAM.png" alt="Compra local" class="submenu-titulo">
+                        <p class="submenu-frase">
+                            Conoce las marcas que hacen a Bogotá y apóyalas.
+                        </p>
+
+                        <ul class="submenu-list">
+                            <li><a href="trend.html" class="submenu-btn">Ver todo</a></li>
+                            <li><a href="law.html" class="submenu-btn">Law Martinez</a></li>
+                            <li><a href="cloud.html" class="submenu-btn">Cloud</a></li>
+                            <li><a href="btacapital.html" class="submenu-btn">btá capital</a></li>
+                            <li><a href="trabajo.html" class="submenu-btn">trabajo honesto</a></li>
+                            <li><a href="vacaciones.html" class="submenu-btn">vacaciones</a></li>
+                            <li><a href="dontcare.html" class="submenu-btn">dontcare</a></li>
+                            <li><a href="manchado.html" class="submenu-btn">manchado</a></li>
+                            <li><a href="comajoyeria.html" class="submenu-btn">comajoyeria</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </nav>
+        </header>
+
+        <main class="main-content-layout">
+
+            <!-- ===== Hero: Law Martinez ===== -->
+            <section class="law-hero">
+
+                <!-- Vuelve al mosaico de marcas -->
+                <a href="trend.html" class="volver-descubre">
+                    <svg viewBox="0 0 32 32" width="18" height="18" aria-hidden="true">
+                        <path d="M26 16 H7 M14 9 L7 16 L14 23"
+                              fill="none" stroke="currentColor" stroke-width="3.5"
+                              stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Descubre
+                </a>
+
+                <!-- Título: PNG -->
+                <img src="comajoy.png" alt="Coma Joyería" class="law-hero__titulo">
+
+                <!-- Contenedor para alinear texto y botón juntos -->
+                <div class="law-hero__content-box">
+                    <p class="law-hero__texto">
+                        Hecho a mano en Bogotá. El arte del oficio.Una coma, Una pausa, Una nueva mirada frente a la joyería tradicional. Si buscas accesorios con personalidad, tienes que visitar Coma Joyería. Es una propuesta colombiana de joyería artesanal en plata 925 que destaca por sus diseños orgánicos y colecciones cápsula exclusivas. Cada pieza está hecha a mano en Bogotá, priorizando el diseño consciente y la originalidad.
+                        <strong>Síguelos en Instagram como @coma.joyeria.</strong>
+                    </p>
+
+                    <a href="#" class="law-hero__boton">Ver más</a>
+                </div>
+
+                <!-- Camiseta: PNG -->
+                <div class="joyas-doble">
+                    <img src="JOYAS.png" alt="Joyas de Coma Joyería" class="joyas-doble__img">
+                    <!-- Misma imagen, encima de la primera (decorativa) -->
+                    <img src="JOYAS.png" alt="" aria-hidden="true" class="joyas-doble__img joyas-doble__img--encima">
+                </div>
+
+
+            </section>
+
+            <!-- ===== Slider ===== -->
+            <section class="slider-seccion">
+
+                <div class="slider">
+
+                    <div class="slider__track">
+
+                        <div class="slide">
+                            <img src="c1.png" alt="Bogotá Amazónica">
+                        </div>
+
+                        <div class="slide">
+                            <img src="c2.png" alt="Slide 2">
+                        </div>
+
+                        <div class="slide">
+                            <img src="c3.png" alt="Slide 3">
+                        </div>
+
+                    </div>
+
+                    <div class="slider__dots" aria-label="Diapositivas"></div>
+
+                </div>
+
+                <!-- Navegación entre marcas (se llena sola con el script de abajo).
+                     data-actual = el archivo de ESTA página. Cámbialo en cada marca. -->
+                <nav class="marca-nav" data-actual="comajoyeria.html" aria-label="Más marcas">
+                    <p class="marca-nav__contador"></p>
+
+                    <div class="marca-nav__fila">
+                        <a href="trend.html" class="marca-nav__btn marca-nav__btn--atras">
+                            <span class="marca-nav__flecha" aria-hidden="true">&larr;</span>
+                            <span class="marca-nav__nombre"></span>
+                        </a>
+                        <a href="trend.html" class="marca-nav__btn marca-nav__btn--siguiente">
+                            <span class="marca-nav__nombre"></span>
+                            <span class="marca-nav__flecha" aria-hidden="true">&rarr;</span>
+                        </a>
+                    </div>
+
+                    <a href="trend.html" class="marca-nav__todas">Ver todas las marcas</a>
+                </nav>
+
+            </section>
+
+            <!-- Franja rosa del final -->
+            <div class="franja-rosa" aria-hidden="true"></div>
+
+        </main>
+    </div>
+
+
+    <!-- ==========================================
+         VERSIÓN ESCRITORIO
+         ========================================== -->
+    <div id="version-escritorio">
+
+        <!-- Aquí va el header, el contenido y las secciones de escritorio -->
+
+    </div>
+
+
+    <!-- ==========================================
+         FOOTER (compartido)
+         ========================================== -->
+    <footer class="footer">
+        <img src="logofot.png" alt="Pilas" class="footer__logo">
+
+        <nav class="footer__nav">
+
+            <div class="footer__col">
+                <h3 class="footer__title">EXPLORAR</h3>
+                <ul class="footer__list">
+                    <li><a href="#">Experiencia</a></li>
+                    <li><a href="#">Tutoriales</a></li>
+                    <li><a href="#">Descubre</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__col">
+                <h3 class="footer__title">QUIÉNES SOMOS</h3>
+                <ul class="footer__list">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="#">Narrativa</a></li>
+                    <li><a href="archivo.html">Archivo</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__col">
+                <h3 class="footer__title">FUNCIONAMIENTO</h3>
+                <ul class="footer__list">
+                    <li><a href="#">Términos y Condiciones</a></li>
+                    <li><a href="#">Política de Privacidad</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__col">
+                <h3 class="footer__title">CONTACTO</h3>
+                <ul class="footer__list">
+                    <li><a href="#">@pilas.bog</a></li>
+                    <li><a href="tel:+573143125406">3143125406</a></li>
+                    <li><span>Horario de Atención<br>8am - 7pm</span></li>
+                </ul>
+            </div>
+
+        </nav>
+    </footer>
+
+
+    <!-- Puntos del slider -->
+    <script>
+        const track = document.querySelector('.slider__track');
+        const slides = track.querySelectorAll('.slide');
+        const dotsBox = document.querySelector('.slider__dots');
+
+        // Crea un punto por cada diapositiva
+        slides.forEach(function (_, i) {
+            const dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = 'slider__dot';
+            dot.setAttribute('aria-label', 'Ir a la diapositiva ' + (i + 1));
+            dot.addEventListener('click', function () {
+                track.scrollTo({ left: track.clientWidth * i, behavior: 'smooth' });
+            });
+            dotsBox.appendChild(dot);
+        });
+
+        const dots = dotsBox.querySelectorAll('.slider__dot');
+
+        // Marca el punto de la diapositiva que se está viendo
+        function marcarPunto() {
+            const i = Math.round(track.scrollLeft / track.clientWidth);
+            dots.forEach(function (d, n) {
+                d.classList.toggle('is-active', n === i);
+                d.setAttribute('aria-current', n === i ? 'true' : 'false');
+            });
+        }
+
+        track.addEventListener('scroll', marcarPunto);
+        marcarPunto();
+    </script>
+
+    <!-- Anterior / siguiente marca.
+         Para agregar una marca nueva, solo súmala a esta lista (y al submenú). -->
+    <script>
+        (function () {
+            const marcas = [
+                { nombre: 'Law Martinez',    url: 'law.html' },
+                { nombre: 'Cloud',           url: 'cloud.html' },
+                { nombre: 'btá capital',     url: 'btacapital.html' },
+                { nombre: 'trabajo honesto', url: 'trabajo.html' },
+                { nombre: 'vacaciones',      url: 'vacaciones.html' },
+                { nombre: 'dontcare',        url: 'dontcare.html' },
+                { nombre: 'manchado',        url: 'manchado.html' },
+                { nombre: 'comajoyeria',     url: 'comajoyeria.html' }
+            ];
+
+            const caja = document.querySelector('.marca-nav');
+            if (!caja) return;
+
+            const i = marcas.findIndex(function (m) { return m.url === caja.dataset.actual; });
+            if (i === -1) return;
+
+            // La última vuelve a la primera y al revés
+            const prev = marcas[(i - 1 + marcas.length) % marcas.length];
+            const next = marcas[(i + 1) % marcas.length];
+
+            const atras = caja.querySelector('.marca-nav__btn--atras');
+            const sig = caja.querySelector('.marca-nav__btn--siguiente');
+
+            atras.href = prev.url;
+            atras.querySelector('.marca-nav__nombre').textContent = prev.nombre;
+            sig.href = next.url;
+            sig.querySelector('.marca-nav__nombre').textContent = next.nombre;
+
+            atras.setAttribute('aria-label', 'Marca anterior: ' + prev.nombre);
+            sig.setAttribute('aria-label', 'Marca siguiente: ' + next.nombre);
+
+            caja.querySelector('.marca-nav__contador').textContent =
+                'Marca ' + (i + 1) + ' de ' + marcas.length;
+        })();
+    </script>
+
+</body>
+
+</html>

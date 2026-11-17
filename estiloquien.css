@@ -1,0 +1,645 @@
+/* ==========================================
+   1. TIPOGRAFÍAS
+   (el @import siempre va en la primera línea)
+   ========================================== */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,900&display=swap');
+
+@font-face {
+    font-family: 'Oferta do Dia';
+    src: url('fonts/OfertaDoDia.woff2') format('woff2'),
+         url('fonts/OfertaDoDia.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+/* ==========================================
+   2. VARIABLES (colores y fuentes de marca)
+   ========================================== */
+:root {
+    --rojo: #D3362E;
+    --amarillo: #FDC913;
+    --rosa: #ECA5C9;
+    --crema: #FBF2DA;
+    --azul: #2E5FA9;
+    --verde: #00A04B;
+    --naranja: #E5521D;
+
+    --fuente-principal: 'Bricolage Grotesque', sans-serif;
+    --fuente-marca: 'Oferta do Dia', sans-serif;
+}
+
+
+/* ==========================================
+   3. ESTILOS GENERALES (móvil y escritorio)
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--amarillo);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow-x: hidden;
+}
+
+/* Imágenes: se muestran a su tamaño real y solo se achican si no caben.
+   Las clases de cada sección pueden sobrescribir esto (width: 100%, etc.) */
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Para cualquier PNG que quieras a su tamaño natural */
+.png-real {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+}
+
+/* La versión móvil está oculta por defecto; se enciende en el media query móvil */
+#version-movil {
+    display: none;
+}
+
+#version-escritorio {
+    display: block;
+}
+
+
+/* ==========================================
+   3.1 ANIMACIÓN AL HACER SCROLL
+   Ponle la clase "reveal" a cualquier elemento y aparece
+   suavemente cuando entra a la pantalla.
+   - style="--delay: 0.15s" en el HTML escalona la entrada.
+   - La clase ".js" la agrega un script del <head>; así, si el
+     JavaScript falla, el contenido NO queda oculto.
+   ========================================== */
+.js .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+    transition-delay: var(--delay, 0s);
+}
+
+.js .reveal.visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* Si la persona tiene activado "reducir movimiento", todo aparece sin animar */
+@media (prefers-reduced-motion: reduce) {
+    .js .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+
+/* ==========================================
+   4. FOOTER (compartido)
+   ========================================== */
+.footer {
+    background-color: var(--crema);
+    padding: 24px 20px 32px;
+    font-family: var(--fuente-principal);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer__logo {
+    display: block;
+    width: 160px;
+    height: auto;
+    margin-bottom: 24px;
+}
+
+.footer__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: fit-content;
+    max-width: 100%;
+}
+
+.footer__title {
+    margin: 0 0 8px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--naranja);
+    letter-spacing: 0.2px;
+}
+
+.footer__list {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer__list a,
+.footer__list span {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--azul);
+    text-decoration: none;
+}
+
+.footer__list a:hover {
+    text-decoration: underline;
+}
+
+.franja-footer {
+    width: 100%;
+    height: 24px;
+    background-color: var(--amarillo);
+}
+
+@media (min-width: 768px) {
+    .footer__nav {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 40px;
+    }
+}
+
+
+/* ==========================================================
+   5. VERSIÓN MÓVIL  (hasta 767px)
+   Todo lo que está aquí solo aplica en celular
+   ========================================================== */
+@media screen and (max-width: 767px) {
+
+    #version-escritorio {
+        display: none;
+    }
+
+    #version-movil {
+        display: block;
+    }
+
+    /* ---------- 5.1 Header y menú hamburguesa ---------- */
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 65px;
+        background-color: var(--amarillo);
+        padding: 0 24px;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo-top img {
+        height: 30px;
+        width: auto;
+        display: block;
+    }
+
+    /* Checkbox invisible que controla el menú sin JavaScript */
+    .menu-toggle,
+    .submenu-toggle {
+        display: none;
+    }
+
+    .hamburger-button {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 20px;
+        cursor: pointer;
+        z-index: 1001;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .hamburger-button span {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background-color: var(--azul);
+        transition: all 0.3s ease;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        background-color: var(--amarillo);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.4s ease;
+    }
+
+    .menu-toggle:checked ~ .nav-menu {
+        right: 0;
+    }
+
+    .nav-list {
+        list-style: none;
+        text-align: center;
+    }
+
+    .nav-list li {
+        margin: 22px 0;
+    }
+
+    .nav-link-menu {
+        color: var(--azul);
+        text-decoration: none;
+        font-family: var(--fuente-principal);
+        font-size: 20px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        display: inline-block;
+    }
+
+    /* ---------- 5.1b Submenú de DESCUBRE ----------
+       Es otro panel a pantalla completa que se desliza encima
+       del menú principal cuando el checkbox #submenu-toggle está marcado. */
+    .submenu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        background-color: var(--amarillo);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 90px 24px 40px;
+        overflow-y: auto;
+        /* Oculto mientras está cerrado (no recibe clics ni foco) */
+        visibility: hidden;
+        transition: right 0.4s ease, visibility 0s linear 0.4s;
+    }
+
+    .submenu-toggle:checked ~ .nav-menu .submenu {
+        right: 0;
+        visibility: visible;
+        transition: right 0.4s ease, visibility 0s;
+    }
+
+    /* Flecha arriba a la izquierda: vuelve al menú principal */
+    .submenu-back {
+        position: fixed;
+        top: 17px;
+        left: 24px;
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+        z-index: 2;
+        -webkit-tap-highlight-color: transparent;
+        transition: transform 0.2s ease;
+    }
+
+    .submenu-back svg {
+        display: block;
+    }
+
+    .submenu-back:active {
+        transform: translateX(-3px);
+    }
+
+    /* Contenido del submenú: frase + lista, centrado */
+    .submenu-content {
+        width: 100%;
+        margin: auto 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    /* Título "Compra local" (PNG a tamaño real; solo se achica si no cabe) */
+    .submenu-titulo {
+        display: block;
+        width: auto;
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 12px;
+    }
+
+    /* Frase debajo del título: caja roja redondeada con texto blanco */
+    .submenu-frase {
+        max-width: 230px;
+        margin-bottom: 30px;
+        padding: 16px 22px;
+        border-radius: 28px;
+        background-color: var(--rojo);
+        font-family: var(--fuente-principal);
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.4;
+        color: #FFFFFF;
+    }
+
+    /* Lista: mismo estilo que el menú principal (texto azul, sin botones) */
+    .submenu-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 22px;
+    }
+
+    .submenu-btn {
+        display: inline-block;
+        color: var(--azul);
+        text-decoration: none;
+        font-family: var(--fuente-principal);
+        font-size: 20px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        -webkit-tap-highlight-color: transparent;
+        transition: transform 0.2s ease;
+    }
+
+    .submenu-btn:active {
+        transform: scale(0.96);
+    }
+
+    .submenu-btn:focus-visible,
+    .nav-link-menu:focus-visible {
+        outline: 3px solid var(--rojo);
+        outline-offset: 3px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .nav-menu,
+        .submenu,
+        .submenu-btn,
+        .submenu-back {
+            transition: none;
+        }
+    }
+
+    /* Animación de hamburguesa a X */
+    .menu-toggle:checked ~ .hamburger-button span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .menu-toggle:checked ~ .hamburger-button span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle:checked ~ .hamburger-button span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+
+
+    /* ---------- 5.2 Contenido principal ---------- */
+    .main-content-layout {
+        padding-top: 65px; /* compensa el header fijo */
+        width: 100%;
+    }
+
+    /* ---------- 5.3 Bloque amarillo (hero) ---------- */
+    .hero-yellow-section {
+        background-color: var(--amarillo);
+        padding: 40px 0 0 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-text-container {
+        text-align: center;
+        margin-bottom: 20px;
+        padding: 0 20px;
+    }
+
+    .italic {
+        font-style: italic;
+        transform: skewX(-5deg);
+    }
+
+    /* Imagen estilo duotono */
+    .duotone-image-container {
+        width: 100%;
+        max-width: 100%;
+        overflow: hidden;
+    }
+
+    .duotone-image-container img {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        margin-top: 0;
+        object-fit: contain;
+    }
+
+    /* ---------- 5.4 Bloque de información (texto) ---------- */
+    .text-columns-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding-left: 55px;
+        padding-right: 55px;
+        margin-top: 20px;
+    }
+
+    .info-column p {
+        font-family: var(--fuente-principal);
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 15px;
+        letter-spacing: 0;
+        font-kerning: auto;
+        text-align: left;
+        text-align-last: left;
+        margin-bottom: 15px;          /* una línea de espacio entre párrafos (igual al interlineado) */
+        hyphens: none;                /* sin cortar palabras con guion */
+        word-spacing: normal;
+    }
+
+    .info-column p:last-child {
+        margin-bottom: 0;             /* el último no necesita espacio */
+    }
+
+    .text-green {
+        color: var(--verde);
+    }
+
+    .text-yellow {
+        color: var(--amarillo);
+        font-weight: bold;
+    }
+
+    /* Palabra PILAS con tipografía de marca */
+    .marca {
+        font-family: var(--fuente-marca);
+        font-size: inherit;
+        font-weight: normal;
+    }
+
+    /* ---------- 5.5 Botones ovalados naranja ---------- */
+    .cta-container {
+        display: flex;
+        justify-content: center;   /* centrado */
+        margin: 20px 0;            /* 20px arriba y abajo */
+    }
+
+    /* Los dos botones: mismo tamaño y tipografía */
+    .btn-orange,
+    .btn-comprar {
+        background-color: var(--naranja);
+        color: var(--crema);
+        text-decoration: none;
+        font-family: var(--fuente-principal);
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 1;
+        text-align: center;
+        white-space: nowrap;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 30px;
+        padding: 0 20px 3px;
+        border-radius: 25px;
+    }
+
+    /* ---------- 5.6 Sección de imagen ---------- */
+    .image-section {
+        width: 100%;
+    }
+
+    .image-section__img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    /* ---------- 5.7 Sección azul del libro ---------- */
+    .book-section {
+        background-color: var(--azul);
+        padding-bottom: 40px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .book-visual {
+        position: relative;
+        width: 100%;
+    }
+
+    .book-visual__img {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin-top: 4.975%;   /* antes 20px: ahora crece con el ancho */
+    }
+
+    /* Solo "Compra aquí": posición sobre la imagen (va después de .btn-comprar de arriba) */
+    .btn-comprar {
+        position: absolute;
+        top: 25%;
+        left: 11%;
+    }
+
+    .book-title {
+        font-family: var(--fuente-principal);
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--crema);
+        text-align: center;
+        margin-top: 20px;
+        padding: 0 20px;
+    }
+
+    .book-star {
+        display: block;
+        width: 70px;
+        height: auto;
+        margin: 30px 0;
+    }
+
+    .book-text {
+        font-family: var(--fuente-principal);
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 1.3;
+        color: var(--crema);
+        text-align: center;
+        padding: 0 55px;
+
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ---------- 5.8 Footer móvil: una sola columna compacta ---------- */
+    .footer {
+        padding: 20px 20px 24px;
+    }
+
+    .footer__logo {
+        width: 190px;                       /* logo más grande */
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+
+    .footer__nav {
+        display: grid;
+        grid-template-columns: auto;
+        justify-content: center;
+        justify-items: center;              /* todo centrado */
+        row-gap: 16px;
+        width: 100%;
+    }
+
+    .footer__col {
+        text-align: center;
+    }
+
+    .footer__title {
+        font-size: 13px;
+        margin-bottom: 6px;
+    }
+
+    .footer__list {
+        padding-left: 0;                    /* sin sangría, para que quede centrado */
+        align-items: center;
+        gap: 5px;
+    }
+
+    .footer__list a,
+    .footer__list span {
+        font-size: 12px;
+        line-height: 1.25;
+    }
+
+}   /* ← aquí termina la versión móvil */
+
+
+/* ==========================================================
+   6. VERSIÓN ESCRITORIO  (desde 768px)
+   Aquí van los estilos que cambian en pantalla grande
+   ========================================================== */
+@media screen and (min-width: 768px) {
+
+    /* Pega aquí los estilos de escritorio */
+
+}

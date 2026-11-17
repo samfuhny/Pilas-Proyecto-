@@ -1,0 +1,547 @@
+/* ==========================================
+   1. TIPOGRAFÍAS
+   (el @import siempre va en la primera línea)
+   ========================================== */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,900&display=swap');
+
+@font-face {
+    font-family: 'Oferta do Dia';
+    src: url('fonts/OfertaDoDia.woff2') format('woff2'),
+         url('fonts/OfertaDoDia.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+/* ==========================================
+   2. VARIABLES (colores y fuentes de marca)
+   ========================================== */
+:root {
+   --rojo: #D3362E;
+    --amarillo: #FDC913;
+     --amarillotar: #FFECBA;
+    --rosa: #ECA5C9;
+    --crema: #FBF2DA;
+    --azul: #2E5FA9;
+    --verde: #00A04B;
+    --naranja: #E5521D;
+    --naranja-footer: #E5521D;
+    
+
+
+    --fuente-principal: 'Bricolage Grotesque', sans-serif;
+    --fuente-marca: 'Oferta do Dia', sans-serif;
+}
+
+
+/* ==========================================
+   3. ESTILOS GENERALES (móvil y escritorio)
+   ========================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--amarillo);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    overflow-x: hidden;
+}
+
+/* Imágenes: se muestran a su tamaño real y solo se achican si no caben.
+   OJO: aquí no hay "width: auto" a propósito. Si un <img> trae el atributo
+   width en el HTML (PNG exportado al doble), ese ancho se respeta; si no lo
+   trae, sale al ancho natural del archivo. */
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Para cualquier PNG que quieras a su tamaño natural */
+.png-real {
+    max-width: 100%;
+    height: auto;
+}
+
+/* La versión móvil está oculta por defecto; se enciende en el media query móvil */
+#version-movil {
+    display: none;
+}
+
+#version-escritorio {
+    display: block;
+}
+
+
+/* ==========================================
+   4. FOOTER (compartido)
+   ========================================== */
+
+   .franja-footer {
+    width: 100%;
+    height: 24px;
+    background-color: var(--azul);
+}
+.footer {
+    background-color: var(--crema);
+    padding: 24px 20px 32px;
+    font-family: var(--fuente-principal);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer__logo {
+    display: block;
+    width: 160px;
+    height: auto;
+    margin-bottom: 24px;
+}
+
+.footer__nav {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: fit-content;
+    max-width: 100%;
+}
+
+.footer__title {
+    margin: 0 0 8px;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--naranja);
+    letter-spacing: 0.2px;
+}
+
+.footer__list {
+    list-style: none;
+    margin: 0;
+    padding: 0 0 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer__list a,
+.footer__list span {
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--azul);
+    text-decoration: none;
+}
+
+.footer__list a:hover {
+    text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+    .footer__nav {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 40px;
+    }
+}
+
+
+/* ==========================================================
+   5. VERSIÓN MÓVIL  (hasta 767px)
+   Todo lo que está aquí solo aplica en celular
+   ========================================================== */
+@media screen and (max-width: 767px) {
+
+    #version-escritorio {
+        display: none;
+    }
+
+    #version-movil {
+        display: block;
+    }
+
+    /* ---------- 5.1 Header y menú hamburguesa ---------- */
+    .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 65px;
+        background-color: var(--crema);
+        padding: 0 24px;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* El logo del header se queda con alto fijo para que quepa en los 65px */
+    .logo-top img {
+        height: 30px;
+        width: auto;
+        display: block;
+    }
+
+    /* Checkbox invisible que controla el menú sin JavaScript */
+    .menu-toggle {
+        display: none;
+    }
+
+    .hamburger-button {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 20px;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    .hamburger-button span {
+        display: block;
+        width: 100%;
+        height: 3px;
+        background-color: var(--azul);
+        transition: all 0.3s ease;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background-color: var(--crema);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.4s ease;
+    }
+
+    .menu-toggle:checked ~ .nav-menu {
+        right: 0;
+    }
+
+    .nav-list {
+        list-style: none;
+        text-align: center;
+    }
+
+    .nav-list li {
+        margin: 22px 0;
+    }
+
+    .nav-link-menu {
+        color: var(--azul);
+        text-decoration: none;
+        font-family: var(--fuente-principal);
+        font-size: 20px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        display: inline-block;
+    }
+
+    /* ---------- 5.2 Contenido principal ---------- */
+    .main-content-layout {
+        padding-top: 65px; /* compensa el header fijo */
+        width: 100%;
+    }
+
+    /* ---------- 5.2.1 Bloque azul: El Afán ---------- */
+    .afan {
+        background-color: var(--azul);
+        border: 3px solid var(--azul-claro);
+        padding: 30px 55px 24px;
+        font-family: var(--fuente-principal);
+        color: var(--crema);
+    }
+
+    /* Título PNG: tamaño real (antes width: 150px) */
+    .afan__titulo {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 18px;
+    }
+
+    .afan__ruta {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--rosa);
+        margin-bottom: 8px;
+    }
+
+    .afan__texto {
+        font-size: 15px;
+        font-weight: 400;
+        line-height: 1.3;
+        margin-bottom: 20px;
+    }
+
+    /* PNG "Sol de lluvia": tamaño real (antes width: 100%) */
+    .afan__figura img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .afan__figura figcaption {
+        margin-top: 5px;
+        margin-bottom: 23px;
+        text-align: right;
+        font-size: 9px;
+        font-weight: 500;
+    }
+
+    /* PNG a tamaño real que además ignora el padding de 55px del bloque
+       (para PNG que ya traen su propio margen). Se suma a la clase que ya tenga.
+       Se achica solo si no cabe en el ancho de la pantalla. */
+    img.png-real--full {
+        display: block;
+        max-width: calc(100% + 110px);
+        height: auto;
+        margin-left: -55px;
+        margin-right: -55px;
+    }
+
+    /* ---------- 5.2.2 Bloque crema: libro + notas ---------- */
+   .mas-contenido {
+    position: relative;
+    z-index: 5;           /* por encima de la franja y el footer, para que la lluvia los cruce */
+    isolation: isolate;
+    background-color: var(--crema);
+    padding: 32px 55px 0;
+    font-family: var(--fuente-principal);
+    overflow: visible;    /* deja que la sombrilla se salga por abajo */
+}
+
+    /* Tarjeta del libro */
+    .tarjeta-libro {
+        position: relative;
+        background-color: var(--amarillotar);
+        border-radius: 14px;
+        padding: 30px 20px 22px;
+        margin-top: 12px;
+        margin-bottom: 32px;
+        text-align: center;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Pestaña amarilla de arriba */
+    .tarjeta-libro::before {
+        content: "";
+        position: absolute;
+        top: -12px;
+        left: 0;
+        width: 100%;
+        height: 24px;
+        background-color: var(--amarillo);
+        border-radius: 14px 14px 0 0;
+        z-index: -1;
+    }
+
+    .tarjeta-libro__titulo {
+        font-size: 14px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 10px;
+    }
+
+    .tarjeta-libro__texto {
+        font-size: 13px;
+        font-weight: 500;
+        color: #1a1a1a;
+        line-height: 1.4;
+    }
+
+    .tarjeta-libro__estrella {
+        display: block;
+        font-size: 26px;
+        color: var(--naranja);
+        margin: 14px 0;
+    }
+
+    .tarjeta-libro__boton {
+        display: inline-block;
+        background-color: var(--naranja);
+        color: #fff;
+        font-size: 12px;
+        font-weight: 700;
+        text-decoration: none;
+        padding: 8px 22px;
+        border-radius: 20px;
+    }
+
+    .tarjeta-libro__enlace {
+        display: block;
+        margin-top: 12px;
+        font-size: 11px;
+        font-weight: 700;
+        color: #1a1a1a;
+        text-decoration: underline;
+    }
+
+    /* Notas (portada a la izquierda + texto).
+       La columna de la portada toma el ancho real del PNG, con un tope del 45%
+       de la fila para que el texto nunca quede aplastado (antes: 96px fijos). */
+    .nota {
+        display: grid;
+        grid-template-columns: fit-content(45%) 1fr;
+        column-gap: 14px;
+        align-items: start;
+        margin-bottom: 24px;
+    }
+
+    .nota__portada img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .nota__etiqueta {
+        font-size: 12px;
+        font-weight: 700;
+        margin-bottom: 4px;
+    }
+
+    .nota__etiqueta--naranja { color: var(--naranja); }
+    .nota__etiqueta--verde   { color: var(--verde); }
+
+    .nota__titulo {
+        font-size: 13px;
+        font-weight: 500;
+        line-height: 1.3;
+        color: #1a1a1a;
+        margin-bottom: 4px;
+        
+    }
+
+    .nota__info,
+.nota__info:hover,
+.nota__info:visited,
+.nota__info:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+    .nota__autor {
+        font-size: 9px;
+        font-weight: 500;
+        color: #444;
+    }
+
+    /* Fila final: flecha a la izquierda + sombrilla a la derecha */
+    .cierre {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-top: 16px;
+    }
+
+    /* Flecha "Narrativa": mismo estilo que la de Cloud, en azul porque el fondo es crema.
+       Va dentro de .cierre, al lado de la sombrilla. */
+    .volver-narrativa {
+        flex: 0 0 auto;
+        margin-top: calc(56.6% - 9px);   /* a la altura del final del palito; es un % del ancho, así escala con la sombrilla (sube o baja el 56.6%) */
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--azul);
+        font-family: var(--fuente-principal);
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .volver-narrativa svg {
+        display: block;
+        transition: transform 0.2s ease;
+    }
+
+    .volver-narrativa:active svg {
+        transform: translateX(-3px);
+    }
+
+    .volver-narrativa:focus-visible {
+        outline: 3px solid var(--azul);
+        outline-offset: 3px;
+    }
+
+    /* Sombrilla (GIF). Su lluvia cae hacia abajo y se sale de la sección:
+       --lluvia-fuera = cuántos px de la imagen se pasan por encima de la franja
+       amarilla y del footer (sube el número para que la lluvia baje más).
+       pointer-events: none -> no bloquea los toques de lo que queda debajo. */
+    .sombrilla {
+        --lluvia-fuera: 60px;
+        position: relative;
+        z-index: 10;
+        flex: 0 0 auto;
+        display: block;
+        width: 58%;
+        max-width: none;
+        height: auto;
+        margin: 0 -35px calc(-1 * var(--lluvia-fuera)) 0;
+        pointer-events: none;
+    }
+
+
+    /* ---------- 5.3 Footer móvil: una sola columna compacta ---------- */
+    .footer {
+        padding: 20px 20px 24px;
+    }
+
+    /* El logo del footer se queda con ancho fijo a propósito */
+    .footer__logo {
+        width: 190px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+
+    .footer__nav {
+        display: grid;
+        grid-template-columns: auto;
+        justify-content: center;
+        justify-items: center;
+        row-gap: 16px;
+        width: 100%;
+    }
+
+    .footer__col {
+        text-align: center;
+    }
+
+    .footer__title {
+        font-size: 13px;
+        margin-bottom: 6px;
+    }
+
+    .footer__list {
+        padding-left: 0;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .footer__list a,
+    .footer__list span {
+        font-size: 12px;
+        line-height: 1.25;
+    }
+
+}   /* ← aquí termina la versión móvil */
+
+
+/* ==========================================================
+   6. VERSIÓN ESCRITORIO  (desde 768px)
+   Aquí van los estilos que cambian en pantalla grande
+   ========================================================== */
+@media screen and (min-width: 768px) {
+
+    /* Pega aquí los estilos de escritorio */
+
+}

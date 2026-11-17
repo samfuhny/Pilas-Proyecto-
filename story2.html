@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gráfica Cotidiana</title>
+
+    <!-- Bricolage Grotesque desde Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,900&display=swap" rel="stylesheet">
+
+    <!-- Estilos propios -->
+    <link rel="stylesheet" href="story2.css">
+</head>
+
+<body>
+
+    <!-- ==========================================
+         VERSIÓN MÓVIL
+         ========================================== -->
+    <div id="version-movil">
+
+        <!-- Encabezado: logo a la izquierda + menú hamburguesa -->
+        <header class="header">
+            <div class="logo-top">
+                 <a href="ENTRADA.HTML">
+                <img src="LOGOMENU.png" alt="Logo Pilas">
+                </a>
+            </div>
+
+           <!-- Checkboxes invisibles que controlan los menús sin JavaScript.
+                 Tienen que ir ANTES de .nav-menu (como hermanos) para que el CSS funcione. -->
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <input type="checkbox" id="submenu-toggle" class="submenu-toggle">
+
+            <label for="menu-toggle" class="hamburger-button" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <!-- Navegación a pantalla completa -->
+            <nav class="nav-menu">
+
+                <!-- Menú principal -->
+                <ul class="nav-list">
+                    <li><a href="QUIENESSOMOS.HTML" class="nav-link-menu">¿QUIÉNES SOMOS?</a></li>
+                    <li><a href="archivo.html" class="nav-link-menu">ARCHIVO</a></li>
+                    <li><a href="narrativa.html" class="nav-link-menu">NARRATIVA</a></li>
+                    <li><a href="#" class="nav-link-menu">EXPERIENCIA</a></li>
+                    <li><a href="tutorial.html" class="nav-link-menu">TUTORIALES</a></li>
+                    <!-- DESCUBRE abre el submenú -->
+                    <li><label for="submenu-toggle" class="nav-link-menu nav-link-submenu">DESCUBRE</label></li>
+                </ul>
+
+                <!-- Submenú de DESCUBRE -->
+                <div class="submenu">
+
+                    <!-- Flecha para volver al menú principal -->
+                    <label for="submenu-toggle" class="submenu-back" aria-label="Volver al menú">
+                        <svg viewBox="0 0 32 32" width="32" height="32" aria-hidden="true">
+                            <path d="M26 16 H7 M14 9 L7 16 L14 23"
+                                  fill="none" stroke="#FBF2DA" stroke-width="3"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </label>
+
+                    <div class="submenu-content">
+                    <img src="COMPRAAM.png" alt="Compra local" class="submenu-titulo">
+                    <p class="submenu-frase">
+                        Conoce las marcas que hacen a Bogotá y apóyalas.
+                    </p>
+
+                    <ul class="submenu-list">
+                        <li><a href="trend.html" class="submenu-btn">Ver todo</a></li>
+                        <li><a href="law.html" class="submenu-btn">Law Martinez</a></li>
+                        <li><a href="cloud.html" class="submenu-btn">Cloud</a></li>
+                        <li><a href="btacapital.html" class="submenu-btn">btá capital</a></li>
+                        <li><a href="trabajo.html" class="submenu-btn">trabajo honesto</a></li>
+                        <li><a href="vacaciones.html" class="submenu-btn">vacaciones</a></li>
+                        <li><a href="dontcare.html" class="submenu-btn">dontcare</a></li>
+                        <li><a href="manchado.html" class="submenu-btn">manchado</a></li>
+                        <li><a href="comajoyeria.html" class="submenu-btn">comajoyeria</a></li>
+                        
+                    </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Contenido principal (móvil) -->
+        <main class="main-content-layout">
+
+            <!-- Sección naranja: cuadro azul con texto + rombo rosado (PNG) con botón -->
+            <section class="story2-section">
+
+                <div class="story2-texto">
+                    <h2 class="story2-texto__titulo">Entre buses, tiendas, letreros, rejas y calles; Bogotá ha construido una forma propia de hablar.</h2>
+                    <p class="story2-texto__parrafo">Una gráfica hecha desde lo cotidiano, desde el barrio y personas que habitan la ciudad.</p>
+                </div>
+
+                <div class="story2-rombo">
+                    <div class="story2-rombo__caja">
+                        <!-- Rombo rosado: el PNG ya incluye el texto "Pero... ¿qué pasa cuando dejamos de verla?" -->
+                        <img src="QUEPASA.png" alt="Pero… ¿qué pasa cuando dejamos de verla?" class="story2-rombo__img">
+
+                        <div class="story2-rombo__btn-zona">
+                            <a href="QUIENESSOMOS.HTML" class="btn-conocenos">Conócenos</a>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+        </main>
+    </div>
+
+
+    <!-- ==========================================
+         VERSIÓN ESCRITORIO
+         ========================================== -->
+    <div id="version-escritorio">
+        <!-- Aquí va el header, el contenido y las secciones de escritorio -->
+    </div>
+
+
+    <!-- ==========================================
+         FOOTER (compartido)
+         ========================================== -->
+    <!-- Franja de color arriba del footer -->
+     <!-- Franja de color arriba del footer -->
+    <div class="franja-footer"></div>
+
+    <footer class="footer">
+        <img src="logofot.png" alt="Pilas" class="footer__logo">
+
+        <nav class="footer__nav">
+
+            <div class="footer__col">
+                <h3 class="footer__title">EXPLORAR</h3>
+                <ul class="footer__list">
+                    <li><a href="#">Experiencia</a></li>
+                    <li><a href="tutorial.html">Tutoriales</a></li>
+                    <li><a href="trend.html">Descubre</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__col">
+                <h3 class="footer__title">QUIÉNES SOMOS</h3>
+                <ul class="footer__list">
+                    <li><a href="ENTRADA.HTML">Inicio</a></li>
+                    <li><a href="narrativa.html">Narrativa</a></li>
+                    <li><a href="archivo.html">Archivo</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__col">
+                <h3 class="footer__title">FUNCIONAMIENTO</h3>
+                <ul class="footer__list">
+                    <li><a href="#">Términos y Condiciones</a></li>
+                    <li><a href="#">Política de Privacidad</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__col">
+                <h3 class="footer__title">CONTACTO</h3>
+                <ul class="footer__list">
+                    <li><a href="#">@pilas.bog</a></li>
+                    <li><a href="tel:+573143125406">3143125406</a></li>
+                    <li><span>Horario de Atención<br>8am - 7pm</span></li>
+                </ul>
+            </div>
+
+        </nav>
+    </footer>
+
+    <!-- Al cerrar el menú principal, el submenú también se cierra,
+         así la próxima vez que se abra empieza en el menú principal -->
+    <script>
+        document.getElementById('menu-toggle').addEventListener('change', function (e) {
+            if (!e.target.checked) {
+                document.getElementById('submenu-toggle').checked = false;
+            }
+        });
+    </script>
+
+</body>
+
+</html>

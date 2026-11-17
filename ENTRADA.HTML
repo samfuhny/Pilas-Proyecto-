@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PILAS</title>
+
+    <!-- Tipografía Bricolage Grotesque -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,900&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="estilo.css">
+</head>
+
+<body>
+
+    <!-- =====================================
+         VERSIÓN ESCRITORIO
+    ====================================== -->
+
+    <div id="version-escritorio">
+
+        <!-- ENCABEZADO ESCRITORIO -->
+        <header class="desktop-header">
+            <nav class="nav-container">
+
+                <!-- Enlaces izquierda -->
+                <a href="#" class="nav-link">¿QUIÉNES SOMOS?</a>
+                <a href="#" class="nav-link">ARCHIVO</a>
+                <a href="#" class="nav-link">NARRATIVA</a>
+
+                <!-- Logo central -->
+                <div class="nav-logo">
+                    <img src="LOGOM.svg" alt="Logo Pilas" class="logo-img">
+                </div>
+
+                <!-- Enlaces derecha -->
+                <a href="#" class="nav-link">EXPERIENCIA</a>
+                <a href="#" class="nav-link">TUTORIALES</a>
+                <a href="#" class="nav-link">DESCUBRE</a>
+
+            </nav>
+        </header>
+
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <main class="main-content">
+
+            <div class="hero-container">
+
+                <!-- ESPACIO PARA LA ANIMACIÓN -->
+                <div class="animation-container">
+
+                    <img src="Pilas-logo-SEPARADO.gif" alt="Descripción de la animación" class="hero-gif">
+
+                    <!-- BOTÓN AZUL (abajo a la derecha de la animación) -->
+                    <a href="story1.html" class="boton-flecha" aria-label="Siguiente">
+                        <svg class="boton-flecha-svg" viewBox="0 0 50 50" aria-hidden="true">
+                            <!-- Rombo azul sin borde -->
+                            <rect x="8" y="8" width="34" height="34" rx="3"
+                                  transform="rotate(45 25 25)"
+                                  fill="#2E5FA9"/>
+                            <!-- Flecha blanca -->
+                            <path d="M16 25 H33 M27.5 19.5 L33 25 L27.5 30.5"
+                                  fill="none" stroke="#FFFFFF" stroke-width="2.6"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+
+    <!-- =====================================
+         VERSIÓN MÓVIL
+    ====================================== -->
+
+     <div id="version-movil">
+
+        <!-- Encabezado: logo a la izquierda + menú hamburguesa -->
+        <header class="header">
+            <div class="logo-top">
+                <a href="ENTRADA.HTML">
+                    <img src="LOGOMENU.png" alt="Logo Pilas">
+                </a>
+            </div>
+
+            <!-- Checkboxes invisibles que controlan los menús sin JavaScript.
+                 Tienen que ir ANTES de .nav-menu (como hermanos) para que el CSS funcione. -->
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <input type="checkbox" id="submenu-toggle" class="submenu-toggle">
+
+            <label for="menu-toggle" class="hamburger-button" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+
+            <!-- Navegación a pantalla completa -->
+            <nav class="nav-menu">
+
+                <!-- Menú principal -->
+                <ul class="nav-list">
+                    <li><a href="QUIENESSOMOS.HTML" class="nav-link-menu">¿QUIÉNES SOMOS?</a></li>
+                    <li><a href="archivo.html" class="nav-link-menu">ARCHIVO</a></li>
+                    <li><a href="narrativa.html" class="nav-link-menu">NARRATIVA</a></li>
+                    <li><a href="https://indd.adobe.com/view/01ebb3d8-5898-4fd8-a1e7-49f5eb0b9a83" class="nav-link-menu">EXPERIENCIA</a></li>
+                    <li><a href="tutorial.html" class="nav-link-menu">TUTORIALES</a></li>
+                    <!-- DESCUBRE abre el submenú -->
+                    <li><label for="submenu-toggle" class="nav-link-menu nav-link-submenu">DESCUBRE</label></li>
+                </ul>
+
+                <!-- Submenú de DESCUBRE -->
+                <div class="submenu">
+
+                    <!-- Flecha para volver al menú principal -->
+                    <label for="submenu-toggle" class="submenu-back" aria-label="Volver al menú">
+                        <svg viewBox="0 0 32 32" width="32" height="32" aria-hidden="true">
+                            <path d="M26 16 H7 M14 9 L7 16 L14 23"
+                                  fill="none" stroke="#FBF2DA" stroke-width="3"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </label>
+
+                    <div class="submenu-content">
+                    <img src="COMPRAAM.png" alt="Compra local" class="submenu-titulo">
+                    <p class="submenu-frase">
+                        Conoce las marcas que hacen a Bogotá y apóyalas.
+                    </p>
+
+                    <ul class="submenu-list">
+                        <li><a href="trend.html" class="submenu-btn">Ver todo</a></li>
+                        <li><a href="law.html" class="submenu-btn">Law Martinez</a></li>
+                        <li><a href="cloud.html" class="submenu-btn">Cloud</a></li>
+                        <li><a href="btacapital.html" class="submenu-btn">btá capital</a></li>
+                        <li><a href="trabajo.html" class="submenu-btn">trabajo honesto</a></li>
+                        <li><a href="vacaciones.html" class="submenu-btn">vacaciones</a></li>
+                        <li><a href="dontcare.html" class="submenu-btn">dontcare</a></li>
+                        <li><a href="manchado.html" class="submenu-btn">manchado</a></li>
+                        <li><a href="comajoyeria.html" class="submenu-btn">comajoyeria</a></li>
+
+                    </ul>
+                    </div>
+                </div>
+
+            </nav>
+        </header>
+
+        <!-- CONTENIDO PRINCIPAL MÓVIL -->
+        <main class="main-content">
+
+            <div class="hero-container">
+
+                <!-- ESPACIO PARA LA ANIMACIÓN -->
+                <div class="animation-container">
+
+                    <!-- El recorte esconde el borde del video (la línea que se ve a la derecha/abajo) -->
+                    <div class="video-recorte">
+                        <video class="hero-gif" autoplay muted loop playsinline>
+                            <source src="Pilas logo SEPARADO Amarillo_4.mp4" type="video/mp4">
+                        </video>
+                    </div>
+
+                    <!-- BOTÓN AZUL (abajo a la derecha de la animación) -->
+                    <a href="story1.html" class="boton-flecha" aria-label="Siguiente">
+                        <svg class="boton-flecha-svg" viewBox="0 0 50 50" aria-hidden="true">
+                            <!-- Rombo azul sin borde -->
+                            <rect x="8" y="8" width="34" height="34" rx="3"
+                                  transform="rotate(45 25 25)"
+                                  fill="#2E5FA9"/>
+                            <!-- Flecha blanca -->
+                            <path d="M16 25 H33 M27.5 19.5 L33 25 L27.5 30.5"
+                                  fill="none" stroke="#FFFFFF" stroke-width="2.6"
+                                  stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <!-- Al cerrar el menú principal, el submenú también se reinicia,
+         así la próxima vez que se abra empieza en el menú principal -->
+    <script>
+        document.getElementById('menu-toggle').addEventListener('change', function (e) {
+            if (!e.target.checked) {
+                document.getElementById('submenu-toggle').checked = false;
+            }
+        });
+    </script>
+
+</body>
+
+</html>
