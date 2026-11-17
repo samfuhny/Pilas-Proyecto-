@@ -35,6 +35,12 @@ var ESPERA_AL_PAGAR  = 1500;           // ms que se ve la confirmación antes de
     }else{paymentSound.pause();paymentSound.muted=false}
   }
 
+  // En iPhone solo cuentan como "toque válido" ciertos eventos (touchend / click).
+  // Por eso intentamos desbloquear el audio con todos, hasta que uno funcione.
+  ['touchend','click','pointerup'].forEach(function(t){
+    document.addEventListener(t,desbloquearAudio,{passive:true});
+  });
+
   card.addEventListener('pointerdown',function(e){
     if(busy)return;desbloquearAudio();dragging=true;card.setPointerCapture(e.pointerId);
     card.classList.remove('idle');card.classList.add('drag');
