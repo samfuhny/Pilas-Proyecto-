@@ -389,7 +389,7 @@ body {
         justify-content: center;
         padding: 24px 0;
         background-color: var(--naranja);
-        background-image: url('fondo2.png');   /* textura + decoraciones */
+        background-image: url('FONDO2.png');   /* textura + decoraciones */
         background-size: cover;
         background-position: center;           /* igual que story1 */
         background-repeat: no-repeat;
