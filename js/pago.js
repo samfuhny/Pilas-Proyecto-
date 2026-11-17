@@ -16,27 +16,78 @@ var ESPERA_AL_PAGAR  = 1500;           // ms que se ve la confirmación antes de
     var c=card.getBoundingClientRect(),z=zone.getBoundingClientRect();
     return Math.hypot(c.left+c.width/2-(z.left+z.width/2),c.top+c.height/2-(z.top+z.height/2))<z.width*0.5;
   }
-  function beep(f,d){try{var a=new (window.AudioContext||window.webkitAudioContext)(),o=a.createOscillator(),g=a.createGain();
+  function beep(f,d){try{var a=getCtx();if(!a)return;var o=a.createOscillator(),g=a.createGain();
     o.frequency.value=f;g.gain.value=.15;o.connect(g);g.connect(a.destination);o.start();o.stop(a.currentTime+d)}catch(e){}}
   function setPos(x,y){var r=stage.getBoundingClientRect();
     card.style.left=((x-r.left-off.x)/r.width*100)+'%';card.style.top=((y-r.top-off.y)/r.height*100)+'%'}
 
-  // Los celulares solo dejan sonar un audio si se "desbloquea" dentro de un toque del usuario.
-  // El sonido del pago suena ~1 s después de soltar la tarjeta, así que lo desbloqueamos al empezar a arrastrar.
-  var audioListo=false;
+  // ===== Audio compatible con iPhone/Android/computador =====
+  // iOS solo deja sonar audio si se desbloquea dentro de un gesto real (touchend / click; pointerdown NO basta).
+  // Por eso: (1) desbloqueamos en varios eventos y (2) tenemos un respaldo con Web Audio (AudioContext).
+  var SONIDO_URL='audio/calle-54.mp3';
+  var audioListo=false,ctx=null,buffer=null;
+  function getCtx(){
+    if(ctx)return ctx;
+    var AC=window.AudioContext||window.webkitAudioContext;
+    if(AC){try{ctx=new AC()}catch(e){ctx=null}}
+    return ctx;
+  }
+  function cargarBuffer(){
+    var c=getCtx();if(!c||buffer)return;
+    try{
+      fetch(SONIDO_URL).then(function(r){return r.arrayBuffer()}).then(function(ab){
+        return new Promise(function(ok,no){c.decodeAudioData(ab,ok,no)});
+      }).then(function(b){buffer=b}).catch(function(){});
+    }catch(e){}
+  }
   function desbloquearAudio(){
-    if(audioListo)return;audioListo=true;
+    if(audioListo)return;
+    // 1) elemento <audio>: reproducir en mudo y pausar, dentro del gesto
     try{
       paymentSound.muted=true;
       var p=paymentSound.play();
-      var listo=function(){paymentSound.pause();paymentSound.currentTime=0;paymentSound.muted=false};
-      if(p&&typeof p.then==='function')p.then(listo,function(){paymentSound.muted=false;audioListo=false});
+      var listo=function(){try{paymentSound.pause();paymentSound.currentTime=0}catch(e){}paymentSound.muted=false;audioListo=true};
+      if(p&&typeof p.then==='function')p.then(listo,function(){paymentSound.muted=false});
       else listo();
-    }catch(e){paymentSound.muted=false;audioListo=false}
+    }catch(e){paymentSound.muted=false}
+    // 2) Web Audio: reanudar el contexto y soltar un sonido vacío (truco de iOS)
+    var c=getCtx();
+    if(c){
+      try{
+        if(c.state==='suspended')c.resume();
+        var s=c.createBufferSource();s.buffer=c.createBuffer(1,1,22050);s.connect(c.destination);s.start(0);
+      }catch(e){}
+      cargarBuffer();
+    }
+  }
+  ['touchstart','touchend','pointerup','click','keydown'].forEach(function(ev){
+    document.addEventListener(ev,desbloquearAudio,{passive:true});
+  });
+  try{paymentSound.load()}catch(e){}
+
+  // Reproduce el sonido del pago; si el <audio> falla, usa Web Audio. Llama a fin() una sola vez al terminar.
+  function sonarPago(fin){
+    var terminado=false;
+    function hecho(err){if(terminado)return;terminado=true;if(err)console.error('Sonido del pago:',err);fin()}
+    function conWebAudio(){
+      var c=getCtx();
+      if(!c||!buffer){hecho('sin Web Audio');return}
+      try{
+        if(c.state==='suspended')c.resume();
+        var s=c.createBufferSource();s.buffer=buffer;s.connect(c.destination);
+        s.onended=function(){hecho()};s.start(0);
+      }catch(e){hecho(e)}
+    }
+    paymentSound.addEventListener('ended',function(){hecho()},{once:true});
+    paymentSound.muted=false;paymentSound.volume=1;
+    try{paymentSound.currentTime=0}catch(e){}
+    var pb;
+    try{pb=paymentSound.play()}catch(e){conWebAudio();return}
+    if(pb&&typeof pb.catch==='function')pb.catch(function(){conWebAudio()});
+    setTimeout(function(){hecho()},6000); // seguro: nunca dejar la página trabada
   }
 
   card.addEventListener('pointerdown',function(e){
-    desbloquearAudio();
     if(busy)return;dragging=true;card.setPointerCapture(e.pointerId);
     card.classList.remove('idle');card.classList.add('drag');
     var c=card.getBoundingClientRect();off.x=e.clientX-c.left;off.y=e.clientY-c.top;
@@ -62,18 +113,7 @@ var ESPERA_AL_PAGAR  = 1500;           // ms que se ve la confirmación antes de
       function continueWhenReady(){
         if(soundFinished&&waitFinished)irSiguiente();
       }
-      function finishSound(error){
-        if(soundFinished)return;
-        soundFinished=true;
-        if(error)console.error('No se pudo reproducir el sonido del pago:',error);
-        continueWhenReady();
-      }
-      paymentSound.addEventListener('ended',function(){finishSound()}, {once:true});
-      paymentSound.addEventListener('error',function(){finishSound(paymentSound.error)}, {once:true});
-      paymentSound.muted=false;paymentSound.volume=1;
-      try{paymentSound.currentTime=0}catch(e){}
-      var playback=paymentSound.play();
-      if(playback&&typeof playback.catch==='function')playback.catch(finishSound);
+      sonarPago(function(){soundFinished=true;continueWhenReady()});
       setTimeout(function(){waitFinished=true;continueWhenReady()},ESPERA_AL_PAGAR);
     },TIEMPO_LECTURA);
   }
