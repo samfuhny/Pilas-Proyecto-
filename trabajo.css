@@ -416,6 +416,7 @@ img {
         display: block;
         margin-left: 0;
         margin-right: auto;
+        z-index: 10;
         width: fit-content;
         background-color: var(--verde);
         color: var(--crema);
