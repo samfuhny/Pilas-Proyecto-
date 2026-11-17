@@ -413,6 +413,7 @@ img {
 
     .law-hero__boton {
         position: relative;
+        z-index: 2;   /* por encima de la camiseta (que lo tapaba por venir después) */
         display: block;
         margin-left: 0;
         margin-right: auto;
