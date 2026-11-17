@@ -21,8 +21,22 @@ var ESPERA_AL_PAGAR  = 1500;           // ms que se ve la confirmación antes de
   function setPos(x,y){var r=stage.getBoundingClientRect();
     card.style.left=((x-r.left-off.x)/r.width*100)+'%';card.style.top=((y-r.top-off.y)/r.height*100)+'%'}
 
+  // En celular el navegador solo deja reproducir audio si el primer play() ocurre
+  // dentro de un toque del usuario. Aquí "desbloqueamos" el sonido en silencio.
+  var audioDesbloqueado=false;
+  function desbloquearAudio(){
+    if(audioDesbloqueado)return;
+    audioDesbloqueado=true;
+    paymentSound.muted=true;
+    var p=paymentSound.play();
+    if(p&&typeof p.then==='function'){
+      p.then(function(){paymentSound.pause();paymentSound.currentTime=0;paymentSound.muted=false})
+       .catch(function(){paymentSound.muted=false;audioDesbloqueado=false});
+    }else{paymentSound.pause();paymentSound.muted=false}
+  }
+
   card.addEventListener('pointerdown',function(e){
-    if(busy)return;dragging=true;card.setPointerCapture(e.pointerId);
+    if(busy)return;desbloquearAudio();dragging=true;card.setPointerCapture(e.pointerId);
     card.classList.remove('idle');card.classList.add('drag');
     var c=card.getBoundingClientRect();off.x=e.clientX-c.left;off.y=e.clientY-c.top;
   });
@@ -30,7 +44,7 @@ var ESPERA_AL_PAGAR  = 1500;           // ms que se ve la confirmación antes de
     if(!dragging)return;setPos(e.clientX,e.clientY);zone.classList.toggle('hot',overZone());
   });
   function release(){
-    if(!dragging)return;dragging=false;card.classList.remove('drag');zone.classList.remove('hot');
+    if(!dragging)return;desbloquearAudio();dragging=false;card.classList.remove('drag');zone.classList.remove('hot');
     if(overZone()){pagar()}else{card.style.left=HOME.left;card.style.top=HOME.top;card.classList.add('idle')}
   }
   card.addEventListener('pointerup',release);card.addEventListener('pointercancel',release);
