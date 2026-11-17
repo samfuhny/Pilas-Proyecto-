@@ -1,0 +1,15 @@
+/* Estilos compartidos por todas las páginas */
+@font-face{font-family:"Oferta do Dia";src:url(../fonts/Oferta-do-Dia.ttf) format("truetype");font-display:swap}
+:root{--rojo:#d3362e;--amarillo:#fdc913;--verde:#00a04b;--azul-oscuro:#2e5fa9;--titulos:"Oferta do Dia","Trebuchet MS",system-ui,sans-serif}
+*{box-sizing:border-box}
+html,body{height:100%;overflow:hidden;margin:0;background:var(--azul-oscuro);display:grid;place-items:center;font-family:"Trebuchet MS",system-ui,sans-serif}
+/* El "escenario" tiene la proporción de la página de InDesign (584 x 940) */
+.stage{position:relative;aspect-ratio:584/940;height:min(100vh,100dvh);max-width:100vw;overflow:hidden;touch-action:none;user-select:none;-webkit-user-select:none}
+.boton{font:inherit;font-weight:700;background:var(--amarillo);color:var(--azul-oscuro);border:0;border-radius:999px;padding:.7em 1.4em;cursor:pointer;text-decoration:none}
+.boton:focus-visible{outline:3px solid #fff;outline-offset:3px}
+/* Transición entre páginas */
+.entra{animation:entra .7s cubic-bezier(.2,.8,.2,1) both}
+.sale{animation:sale .6s cubic-bezier(.6,0,.8,.4) both}
+@keyframes entra{from{transform:translateY(100%)}to{transform:none}}
+@keyframes sale{to{transform:translateY(-100%)}}
+@media (prefers-reduced-motion:reduce){.entra,.sale{animation:none}}

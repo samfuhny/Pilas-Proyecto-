@@ -1,0 +1,22 @@
+PROYECTO: ¡Aliste la tarjeta!
+
+Abrir en Visual Studio Code: Archivo > Abrir carpeta > elige esta carpeta.
+Ver la página: instala la extensión "Live Server", clic derecho en "index.html" > "Open with Live Server".
+
+Orden de las páginas:
+  index.html  ->  pago.html  ->  pagina2.html  ->  pagina4.html (MAPA)  ->  actividades/
+
+Archivos:
+  index.html        página 1 "¡Siga, siga!" (css/siga-siga.css, js/siga-siga.js, img/siga-siga/); la flecha lleva a pago.html
+  pago.html         página 2, el pago "¡Aliste la tarjeta!" (css/pagina1.css, js/pago.js, img/pagina1/); al pagar pasa a pagina2.html
+  pagina2.html      "¿En qué estación se va a bajar?" (css/pagina2.css, js/pagina2.js, img/pagina2/); la flecha lleva a pagina4.html
+  ya-te-vas.html    "¿Ya te vas?": la flecha inferior derecha del mapa lleva aquí; "Volver al mapa" regresa a pagina4.html
+  pagina4.html      MAPA "¡Quiubo, veci!" (todo incluido en el mismo archivo). Cada punto abre una actividad de actividades/
+  actividades/      tarjetas, postales, dicho-y-hecho, brandalismo, las-onces, que-recocha
+  css/estilos.css   estilos compartidos por todas las páginas
+  img/              imágenes, una carpeta por página
+
+Para cambiar qué actividad va en cada punto del mapa: al inicio del <script> de pagina4.html está la lista ZONAS
+(posición del pin, título, descripción y archivo).
+
+IMPORTANTE: mantén la carpeta actividades/ junto a pagina4.html; el mapa las carga por su nombre.

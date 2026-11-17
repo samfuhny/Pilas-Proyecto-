@@ -1,0 +1,24 @@
+/* Solo para la página 1 (el pago) */
+#stage{background:url(../img/pagina1/fondo.jpg) center/cover}
+#reader{position:absolute;left:16.4%;top:34.5%;width:73%;pointer-events:none}
+#star{position:absolute;left:37%;top:7%;width:60%;aspect-ratio:1;container-type:size;pointer-events:none}
+#star img{width:100%;height:100%;object-fit:contain;display:block}
+#star span{position:absolute;inset:0;display:grid;place-items:center;text-align:center;color:#fff;font-family:var(--titulos);font-weight:400;font-size:9.5cqw;line-height:1.02;text-wrap:balance;transform:rotate(-6deg) translateY(3%);padding:0 14%}
+.done #star span{transform:rotate(-6deg) translateY(7%)}
+#swoosh{position:absolute;left:14%;top:67%;width:40%;pointer-events:none}
+/* Zona donde se "paga": ajusta left, top y width si hace falta */
+#zone{position:absolute;left:52.6%;top:52.7%;width:34%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;pointer-events:none}
+#zone.hot{box-shadow:0 0 0 4px #fff8,0 0 30px 8px #fff6}
+#lamp{position:absolute;left:37.6%;top:47%;width:8%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;opacity:0;transition:opacity .2s;pointer-events:none;box-shadow:0 0 0 3px #fff,0 0 24px 10px #9dffb8,inset 0 0 14px #9dffb8}
+#ok{position:absolute;left:67.7%;top:47.1%;width:11%;aspect-ratio:1;transform:translate(-50%,-50%) scale(0);border-radius:50%;background:var(--verde);display:grid;place-items:center;pointer-events:none;transition:transform .3s cubic-bezier(.3,1.6,.5,1);border:3px solid #fff}
+#ok svg{width:60%}
+.done #lamp{opacity:1}.done #ok{transform:translate(-50%,-50%) scale(1)}
+#card{position:absolute;left:66%;top:71%;width:22%;cursor:grab;touch-action:none;transition:left .35s,top .35s,transform .35s;filter:drop-shadow(0 6px 6px #0005);z-index:5}
+#card img{width:100%;display:block;pointer-events:none;-webkit-user-drag:none}
+#card.drag{cursor:grabbing;transition:none;transform:scale(1.12) rotate(-4deg)}
+#card.idle{animation:wob 2.4s ease-in-out infinite}
+#card.locked{cursor:default}
+@keyframes wob{0%,100%{transform:rotate(0)}50%{transform:rotate(-4deg) translateY(-4px)}}
+#hint{position:absolute;left:0;right:0;bottom:2.5%;padding:0 6%;text-align:center;color:#fff;font-weight:700;text-shadow:0 1px 4px #0008;pointer-events:none;font-size:clamp(12px,2.2vh,16px)}
+.done #hint{display:none}
+@media (prefers-reduced-motion:reduce){#card.idle{animation:none}}

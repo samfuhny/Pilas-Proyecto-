@@ -1,0 +1,24 @@
+/* Solo para la pantalla "¡Siga, siga!" (usa estilos.css para el escenario y la fuente) */
+/* 1 unidad = 1 px del diseño original de 528 x 850 */
+#stage{background:#eca5c9}
+.art{position:absolute;inset:0;container-type:size;--u:calc(100cqw / 528);
+  --azul:#2e5fa9;--crema:#fbf2da;--rojo:#d3362e}
+.art img,.art svg{position:absolute;display:block;user-select:none;-webkit-user-drag:none;pointer-events:none}
+
+.bus1{left:calc(var(--u) * -143);top:calc(var(--u) * -24);width:calc(var(--u) * 479)}
+.bus2{left:calc(var(--u) * 189);top:calc(var(--u) * 612);width:calc(var(--u) * 479);transform:scaleX(-1)}
+
+.estrella1{left:calc(var(--u) * 330);top:calc(var(--u) * -64);width:calc(var(--u) * 263)}
+.estrella2{left:calc(var(--u) * -52);top:calc(var(--u) * 647);width:calc(var(--u) * 263);transform:rotate(180deg)}
+
+h1{position:absolute;inset:0;margin:0;font:400 calc(var(--u) * 122)/1 var(--titulos);color:var(--azul);letter-spacing:.01em}
+h1 span{position:absolute;white-space:nowrap}
+.l1{left:calc(var(--u) * 220);top:calc(var(--u) * 236);transform:translateX(-50%)}
+.l2{left:calc(var(--u) * 320);top:calc(var(--u) * 332);transform:translateX(-50%)}
+
+.sub{position:absolute;left:0;right:0;top:calc(var(--u) * 466);margin:0;text-align:center;
+  font:400 calc(var(--u) * 25.5)/1 var(--titulos);color:var(--crema);letter-spacing:.02em;white-space:nowrap}
+.sub u{text-decoration:none}
+
+/* La apariencia del botón está en css/territorio-btn.css; aquí solo posición y tamaño */
+.siguiente{left:calc(var(--u) * 196);top:calc(var(--u) * 510);width:calc(var(--u) * 136)}

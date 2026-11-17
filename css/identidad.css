@@ -1,0 +1,108 @@
+@font-face{
+  font-family:"Bricolage Grotesque";
+  src:url("../fonts/BricolageGrotesque-Medium.ttf") format("truetype");
+  font-weight:400;
+  font-display:swap;
+}
+
+@font-face{
+  font-family:"Bricolage Grotesque";
+  src:url("../fonts/BricolageGrotesque-Medium.ttf") format("truetype");
+  font-weight:500;
+  font-display:swap;
+}
+
+:root{
+  --azul:#2e5fa9!important;
+  --rojo:#d3362e!important;
+  --amarillo:#fdc913!important;
+  --rosa:#eca5c9!important;
+  --crema:#fbf2da!important;
+  --verde:#00a04b!important;
+  --naranja:#e5521d!important;
+  --azul-oscuro:var(--azul)!important;
+  --blue:var(--azul)!important;
+  --ink:var(--azul)!important;
+  --text:var(--azul)!important;
+  --fg:var(--azul)!important;
+  --red:var(--rojo)!important;
+  --yellow:var(--amarillo)!important;
+  --yel:var(--amarillo)!important;
+  --pink:var(--rosa)!important;
+  --cream:var(--crema)!important;
+  --bg:var(--crema)!important;
+  --page:var(--crema)!important;
+  --paper:var(--crema)!important;
+  --cloth:var(--crema)!important;
+  --sheet:var(--crema)!important;
+  --key:var(--crema)!important;
+  --card:var(--crema)!important;
+  --green:var(--verde)!important;
+  --orange:var(--naranja)!important;
+  --accent:var(--naranja)!important;
+  --line:var(--azul)!important;
+  --panel:rgba(251,242,218,.93)!important;
+  --wash:rgba(236,165,201,.3)!important;
+}
+
+body{
+  font-family:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif!important;
+}
+
+body p:not(.art .sub){
+  font-family:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif!important;
+  font-size:15px!important;
+  font-weight:400!important;
+  line-height:1.3!important;
+}
+
+body>p.sub,
+.poster p.sub,
+#hint,
+.hint,
+.toast,
+#note,
+.lives,
+.clue{
+  font-family:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif!important;
+  font-size:15px!important;
+  font-weight:400!important;
+  line-height:1.3!important;
+}
+
+button:not(.territorio-btn),
+.btn,
+.home{
+  font-family:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif!important;
+  font-size:13px!important;
+  font-weight:500!important;
+  line-height:1.3!important;
+}
+
+h1+p:not(.art .sub),
+h2+p,
+h3+p{
+  margin-block-start:23px!important;
+}
+
+.art{
+  --azul:#2e5fa9!important;
+  --crema:#fbf2da!important;
+  --rojo:#d3362e!important;
+}
+
+.territorio-btn-svg path:first-child{
+  fill:var(--azul)!important;
+  stroke:var(--azul)!important;
+}
+
+.screen p{
+  font-family:"Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif!important;
+  font-size:15px!important;
+  font-weight:400!important;
+  line-height:1.3!important;
+}
+
+.home{
+  text-decoration:none;
+}

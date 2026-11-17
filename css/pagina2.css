@@ -1,0 +1,27 @@
+/* Solo para la página 2 ("¿En qué estación se va a bajar?") */
+/* 1 unidad = 1 px del diseño original de 654 x 1048 */
+@font-face{font-family:"Bricolage Grotesque";src:url(../fonts/BricolageGrotesque-Medium.ttf) format("truetype");font-weight:500;font-display:swap}
+#stage{background:#fbf2da;display:block;place-items:unset;padding:0;text-align:left}
+.art{position:absolute;inset:0;container-type:size;--u:calc(100cqw / 654);--crema:#fbf2da}
+.art img{position:absolute;display:block;max-width:none;user-select:none;-webkit-user-drag:none;pointer-events:none}
+.flourish-verde{left:calc(var(--u) * 25);top:calc(var(--u) * 63);width:calc(var(--u) * 297)}
+.estrella-roja{left:calc(var(--u) * 401);top:calc(var(--u) * 44);width:calc(var(--u) * 112)}
+.onda-rosa{left:calc(var(--u) * 540);top:calc(var(--u) * 25);width:calc(var(--u) * 173)}
+.tazon{left:calc(var(--u) * -65);top:calc(var(--u) * 159);width:calc(var(--u) * 179)}
+.estrella-azul{left:calc(var(--u) * 540);top:calc(var(--u) * 201);width:calc(var(--u) * 114)}
+.chispa-verde{left:calc(var(--u) * -63);top:calc(var(--u) * 297);width:calc(var(--u) * 167)}
+.campana{left:calc(var(--u) * 536);top:calc(var(--u) * 426);width:calc(var(--u) * 179)}
+.estrella-5{left:calc(var(--u) * 24);top:calc(var(--u) * 523);width:calc(var(--u) * 95)}
+.rombo{left:calc(var(--u) * 173);top:calc(var(--u) * 589);width:calc(var(--u) * 53)}
+.chispa-amarilla{left:calc(var(--u) * 444);top:calc(var(--u) * 572);width:calc(var(--u) * 79)}
+.flourish-naranja{left:calc(var(--u) * 253);top:calc(var(--u) * 719);width:calc(var(--u) * 298)}
+/* Animación del bus (reemplaza la imagen de las figuras). Video 1794x1038 ajustado al ancho de la página */
+.animacion{position:absolute;display:block;left:-7.5%;top:calc(var(--u) * 679);width:115%;height:auto;z-index:0;pointer-events:none;user-select:none;background:transparent}
+.flourish-naranja{z-index:1}
+
+.rutero{left:calc(var(--u) * 147);top:calc(var(--u) * 152);width:calc(var(--u) * 373);height:calc(var(--u) * 407)}
+.texto{position:absolute;left:calc(var(--u) * 147);width:calc(var(--u) * 373);top:calc(var(--u) * 326);margin:0;padding:0;text-align:center;
+  font:500 calc(var(--u) * 19.5)/calc(var(--u) * 23.5) "Bricolage Grotesque","Trebuchet MS",system-ui,sans-serif;color:var(--crema);white-space:nowrap}
+
+/* La apariencia del botón está en css/territorio-btn.css; aquí solo posición y tamaño */
+.siguiente{left:calc(var(--u) * 280);top:calc(var(--u) * 567);width:calc(var(--u) * 120);z-index:2}
