@@ -409,6 +409,13 @@ body {
         width: 100%;
         display: flow-root;
 
+        /* Alto de la pantalla menos el header fijo (65px): el fondo llena todo y
+           el footer queda fuera de la vista hasta que se hace scroll.
+           svh = alto "seguro" en celular (no lo tapa la barra del navegador);
+           la línea de vh es el respaldo para navegadores viejos. */
+        min-height: calc(100vh - 65px);
+        min-height: calc(100svh - 65px);
+
         background-color: var(--crema);          /* respaldo mientras carga */
         background-image: url('FONDO1.png');
         background-size: cover;                  /* cubre todo el ancho y alto de la sección */
@@ -416,21 +423,21 @@ body {
         background-repeat: no-repeat;
     }
 
-    /* El wrapper se ajusta al tamaño real del PNG, así el botón
+    /* El wrapper mide lo mismo que el PNG, así el botón
        se posiciona sobre la imagen y no sobre la pantalla. */
     .territorio-wrapper {
         position: relative;
         display: block;
-        width: fit-content;
+        width: 100%;          /* el PNG ocupa todo el ancho (se agranda si es más angosto) */
         max-width: 100%;
         margin: var(--bajar-png) auto 0;
     }
 
-    /* PNG a tamaño real; solo se achica si no cabe en la pantalla */
+    /* PNG a todo el ancho de la pantalla; el alto se ajusta solo */
     .territorio-title {
         animation: png-aparece 0.5s ease both;
         display: block;
-        width: auto;
+        width: 100%;
         max-width: 100%;
         height: auto;
     }

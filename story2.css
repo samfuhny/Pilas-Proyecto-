@@ -384,6 +384,14 @@ body {
            no se recorta ni se estira, y el contenido queda centrado dentro.
            >>> Cambia 4 / 5 por el ancho y alto reales de tu fondo2.png <<< */
         aspect-ratio: 4 / 5;
+
+        /* La sección nunca es más baja que la pantalla (menos el header fijo de 65px):
+           el fondo llena todo y el footer queda fuera de la vista hasta hacer scroll.
+           svh = alto "seguro" en celular (no lo tapa la barra del navegador);
+           la línea de vh es el respaldo para navegadores viejos. */
+        min-height: calc(100vh - 65px);
+        min-height: calc(100svh - 65px);
+
         display: flex;
         flex-direction: column;
         justify-content: center;

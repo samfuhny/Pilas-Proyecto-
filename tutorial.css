@@ -448,12 +448,12 @@ img {
 
     .btn--amarillo {
         background-color: var(--amarillo);
-        color: #111111;
+        color: var(--azul);
     }
 
     .btn--rosa {
         background-color: var(--rosa);
-        color: #111111;
+        color: var(--crema);
     }
 
     .btn--rojo {
@@ -504,37 +504,59 @@ img {
         padding-bottom: 48px;
     }
 
-    /* Fila superior: imagen pegada a la izquierda + título y botón */
+    /* ===== Medidas tomadas del diseño (mesa de trabajo de ~288 px de ancho) =====
+       Todo va en % del ancho de la pantalla (y la letra en vw), así la sección se ve
+       idéntica al diseño en cualquier celular. */
+
+    /* Fila superior: foto pegada a la izquierda; título y botón encima, a la derecha.
+       Título y botón van posicionados por su CENTRO (left / top) para que queden
+       exactamente donde están en el diseño. */
     .pinta__cabecera {
-        display: flex;
-        align-items: center;
-        margin-bottom: 40px;
+        position: relative;
+        display: block;
+        overflow: hidden;       /* los márgenes transparentes del PNG no se salen de la pantalla */
+        margin-bottom: 20.1%;   /* aire entre la fila de arriba y la primera foto */
     }
 
     .pinta__portada {
         display: block;
-        flex: 0 1 auto;       /* tamaño real; solo se encoge si no cabe */
-        max-width: 50%;       /* deja espacio para el título y el botón */
+        width: 52.5%;           /* foto de arriba */
+        max-width: none;
         height: auto;
     }
 
+    /* El bloque no genera caja propia: título y botón se posicionan sobre .pinta__cabecera */
     .pinta__titulo-bloque {
-        flex: 1;
-        min-width: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 18px;
-        padding: 0 16px;
+        display: contents;
     }
 
-    /* Cada paso: imagen centrada + texto rosa */
+    /* Título PNG a su tamaño real: el mismo de los demás títulos (218 px sobre una
+       pantalla de 390 px = 55.9%), escalado con la pantalla. */
+    .pinta__titulo-bloque .pinta__titulo {
+        position: absolute;
+        left: 77.9%;            /* centro del título (en % del ancho) */
+        top: 43%;               /* centro del título (en % del alto de la foto) */
+        transform: translate(-50%, -50%);
+        width: 55.9%;
+        max-width: none;
+        height: auto;
+    }
+
+    /* Botón: mismo tamaño de siempre, solo se ubica donde va en el diseño */
+    .pinta__titulo-bloque .btn {
+        position: absolute;
+        left: 78%;              /* centro del botón */
+        top: 70.3%;
+        transform: translate(-50%, -50%);
+    }
+
+    /* Cada paso: foto centrada + texto rosa */
     .pinta__paso {
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin: 0 auto 36px;
-        padding: 0 24px;
+        margin: 0 auto 9.2%;
+        padding: 0;
     }
 
     .pinta__paso:last-child {
@@ -542,15 +564,18 @@ img {
     }
 
     .pinta__paso-img {
-        margin-bottom: 14px;
+        width: 75.7%;           /* foto del paso, con ~12% de aire por lado */
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 4.1%;
     }
 
     .pinta__paso-texto {
-        max-width: 250px;
+        width: 60%;             /* se parte en dos líneas: "…en la que / encuentras el esténcil." */
         text-align: center;
-        font-size: 15px;
+        font-size: 3.85vw;      /* = 15 px en una pantalla de 390 px, escala con la pantalla */
         font-weight: 400;
-        line-height: 1.4;
+        line-height: 1.05;
         color: var(--rosa);
     }
 
