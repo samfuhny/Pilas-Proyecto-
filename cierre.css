@@ -1,0 +1,139 @@
+/* ==========================================
+   VARIABLES (mismas de narrativa)
+   ========================================== */
+:root {
+    --rojo: #D3362E;
+    --amarillo: #FDC913;
+    --crema: #FBF2DA;
+    --azul: #2E5FA9;
+    --naranja: #E5521D;
+
+    --fuente-principal: 'Bricolage Grotesque', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--crema);
+    overflow-x: hidden;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* ==========================================
+   BOGOTÁ SIEMPRE ESTUVO AQUÍ
+   La imagen y el contenido comparten el mismo espacio (grid):
+   el contenido va ENCIMA de la imagen, pero se apila de arriba
+   hacia abajo, así que los elementos nunca se pisan entre sí.
+   ========================================== */
+.bogota {
+    background-color: var(--crema);
+    width: 100%;
+}
+
+.bogota__caja {
+    display: grid;                 /* imagen y contenido en la misma celda */
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    container-type: inline-size;   /* permite usar cqw (% del ancho de esta caja) */
+}
+
+.bogota__img,
+.bogota__contenido {
+    grid-area: 1 / 1;
+}
+
+.bogota__img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Bloque de contenido apilado.
+   padding-top = lo que mide el título del PNG (27.5cqw) + el aire de abajo.
+   Si quieres más/menos espacio bajo el título, cambia los 36px. */
+.bogota__contenido {
+    align-self: start;
+    padding-top: 290px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 36px;                     /* espacio entre el texto y el cuadro azul */
+}
+
+/* Las 4 líneas: el bloque va centrado, el texto alineado a la izquierda */
+.bogota__texto {
+    width: max-content;
+
+    font-family: var(--fuente-principal);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.3;
+    text-align: left;
+    color: #333;
+}
+
+/* Cuadro azul: mismo estilo de la pastilla de narrativa */
+.bogota__card {
+    width: calc(100% - 60px);
+    max-width: 280px;
+    padding: 28px 30px 30px;
+    border-radius: 25px;
+
+    background-color: var(--azul);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bogota__card-texto {
+    font-family: var(--fuente-principal);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.3;
+    text-align: center;
+    color: var(--crema);
+}
+
+/* Los dos botones, uno debajo del otro dentro del cuadro */
+.bogota__botones {
+    width: 100%;
+    margin-top: 22px;              /* espacio entre la frase y los botones */
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;                     /* espacio entre los dos botones */
+}
+
+
+/* ==========================================
+   BOTONES AMARILLOS (letra azul, forma de narrativa)
+   ========================================== */
+.btn-amarillo {
+    background-color: var(--amarillo);
+    color: var(--azul);
+    text-decoration: none;
+    font-family: var(--fuente-principal);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1;
+    white-space: nowrap;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    padding: 0 16px 3px;
+    border-radius: 25px;
+}
