@@ -412,20 +412,22 @@ img {
     }
 
     .law-hero__boton {
-        position: relative;
-        display: block;
-        margin-left: 0;
-        margin-right: auto;
-        width: fit-content;
-        background-color: var(--amarillo);
-        color: var(--rojo);
-        font-size: 12px;
-        font-weight: 700;
-        text-decoration: none;
-        padding: 8px 26px;
-        border-radius: 20px;
-        margin-top: 23px;
-    }
+    position: relative;
+    z-index: 10; /* <--- Esto lo pone por encima de cualquier fondo o degradado */
+    cursor: pointer; /* <--- Asegura que salga la manito al pasar el mouse */
+    display: block;
+    margin-left: 0;
+    margin-right: auto;
+    width: fit-content;
+    background-color: var(--amarillo);
+    color: var(--rojo);
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 8px 26px;
+    border-radius: 20px;
+    margin-top: 23px;
+}
 
     /* Camiseta posicionada hacia la derecha de forma idéntica a la Imagen 1 */
     .law-hero__camiseta {
